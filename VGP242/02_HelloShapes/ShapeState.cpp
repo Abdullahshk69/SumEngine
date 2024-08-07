@@ -63,7 +63,7 @@ void ShapeState::Initialize()
 	std::vector<D3D11_INPUT_ELEMENT_DESC> vertexLayout;
 	vertexLayout.push_back({ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT });
 	vertexLayout.push_back({ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT });
-	
+
 	hr = device->CreateInputLayout(
 		vertexLayout.data(),
 		(UINT)vertexLayout.size(),
@@ -102,7 +102,7 @@ void ShapeState::Initialize()
 	ASSERT(SUCCEEDED(hr), "Failed to create pixel shader");
 	SafeRelease(shaderBlob);
 	SafeRelease(errorBlob);
-}	
+}
 
 void ShapeState::Terminate()
 {
@@ -170,31 +170,153 @@ void TriforceShapeState::Update(float deltaTime)
 {
 	if (InputSystem::Get()->IsKeyPressed(KeyCode::DOWN))
 	{
-		MainApp().ChangeState("TriangleShapeState");
+		MainApp().ChangeState("DiamondShapeState");
 	}
 }
 
 void TriforceShapeState::CreateShape()
 {
 	// Triangle 1
-	mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Red });
-	mVertices.push_back({ { 0.5f, 1.0f, 0.0f }, Colors::Green });
-	mVertices.push_back({ { 0.5f, 0.5f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { -1.0f, 0.0f, 0.0f }, Colors::Red });
+	mVertices.push_back({ { -0.75f, 0.5f, 0.0f }, Colors::Red });
+	mVertices.push_back({ { -0.5f, 0.0f, 0.0f }, Colors::Red });
 
 	// Triangle 2
-
+	mVertices.push_back({ { -0.5f, 0.0f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { -0.25f, 0.5f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Blue });
 
 	// Triangle 3
+	mVertices.push_back({ { -0.75f, 0.5f, 0.0f }, Colors::Green });
+	mVertices.push_back({ { -0.5f, 1.0f, 0.0f }, Colors::Green });
+	mVertices.push_back({ { -0.25f, 0.5f, 0.0f }, Colors::Green });
 }
 
 void DiamondShapeState::Update(float deltaTime)
 {
-	if (InputSystem::Get()->IsKeyPressed(KeyCode::UP))
+	if (InputSystem::Get()->IsKeyPressed(KeyCode::DOWN))
 	{
-		MainApp().ChangeState("TriforceShapeState");
+		MainApp().ChangeState("HatShapeState");
 	}
 }
 
 void DiamondShapeState::CreateShape()
 {
+	// Center Triangle
+	mVertices.push_back({ { 0.0f, -0.5f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { -0.25f, 0.5f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { 0.25f, 0.5f, 0.0f }, Colors::Blue });
+
+	// Left side Triangle
+	mVertices.push_back({ { 0.0f, -0.5f, 0.0f }, Colors::Red });
+	mVertices.push_back({ { -0.5f, 0.5f, 0.0f }, Colors::Red });
+	mVertices.push_back({ { 0.25f, 0.5f, 0.0f }, Colors::Red });
+
+	// Right side Triangle
+	mVertices.push_back({ { 0.0f, -0.5f, 0.0f }, Colors::Green });
+	mVertices.push_back({ { 0.25f, 0.5f, 0.0f }, Colors::Green });
+	mVertices.push_back({ { 0.5f, 0.5f, 0.0f }, Colors::Green });
+
+	// Top Middle
+	mVertices.push_back({ { -0.25f, 0.5f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { 0.0f, 1.0f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { 0.25f, 0.5f, 0.0f }, Colors::Purple });
+
+	// Top Right Base Down
+	mVertices.push_back({ { 0.25f, 0.5f, 0.0f }, Colors::Brown });
+	mVertices.push_back({ { 0.375f, 1.0f, 0.0f }, Colors::Brown });
+	mVertices.push_back({ { 0.5f, 0.5f, 0.0f }, Colors::Brown });
+
+	// Top Right Base Up
+	mVertices.push_back({ { 0.25f, 0.5f, 0.0f }, Colors::Pink });
+	mVertices.push_back({ { 0.0f, 1.0f, 0.0f }, Colors::Pink });
+	mVertices.push_back({ { 0.375f, 1.0f, 0.0f }, Colors::Pink });
+
+	// Top Left Base Down
+	mVertices.push_back({ { -0.5f, 0.5f, 0.0f }, Colors::Magenta });
+	mVertices.push_back({ { -0.375f, 1.0f, 0.0f }, Colors::Magenta });
+	mVertices.push_back({ { -0.25f, 0.5f, 0.0f }, Colors::Magenta });
+
+	// Top Left Base Up
+	mVertices.push_back({ { -0.25f, 0.5f, 0.0f }, Colors::Orange });
+	mVertices.push_back({ { -0.375f, 1.0f, 0.0f }, Colors::Orange });
+	mVertices.push_back({ { 0.0f, 1.0f, 0.0f }, Colors::Orange });
+}
+
+void StarShapeState::Update(float deltaTime)
+{
+	if (InputSystem::Get()->IsKeyPressed(KeyCode::DOWN))
+	{
+		MainApp().ChangeState("TriforceShapeState");
+	}
+}
+
+void StarShapeState::CreateShape()
+{
+
+	//x = cos(angle);
+	//y = sin(angle);
+	
+	// Outer Triangles
+	// 1
+	mVertices.push_back({ { -0.125f, 0.5f, 0.0f }, Colors::Pink });
+	mVertices.push_back({ { 0.0f, 1.0f, 0.0f }, Colors::Pink });
+	mVertices.push_back({ { 0.125f, 0.5f, 0.0f }, Colors::Pink });
+
+	// 2
+	/*mVertices.push_back({ { -0.2f, 0.25f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { -0.5f, 0.5f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { -0.125f, 0.5f, 0.0f }, Colors::Blue });*/
+
+	// 3
+
+	// 4
+
+	// 5
+
+	// Inner Triangles
+	// 6
+	mVertices.push_back({ { -0.2f, 0.0f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { -0.125f, 0.375f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { 0.125f, 0.375f, 0.0f }, Colors::Purple });
+
+	// 7
+	mVertices.push_back({ { 0.0f, -0.25f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { -0.2f, 0.0f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { 0.125f, 0.5f, 0.0f }, Colors::Purple });
+	
+	// 8
+	mVertices.push_back({ { 0.0f, -0.25f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { 0.125f, 0.5f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { 0.2f, 0.0f, 0.0f }, Colors::Purple });
+}
+
+void HatShapeState::Update(float deltaTime)
+{
+	if (InputSystem::Get()->IsKeyPressed(KeyCode::DOWN))
+	{
+		MainApp().ChangeState("TriforceShapeState");
+	}
+}
+
+void HatShapeState::CreateShape()
+{
+	// Top Triangles
+	mVertices.push_back({ { -0.5f, -0.2f, 0.0f }, Colors::Brown });
+	mVertices.push_back({ { -0.5f, 0.5f, 0.0f }, Colors::Brown });
+	mVertices.push_back({ { 0.5f, 0.5f, 0.0f }, Colors::Brown });
+
+	mVertices.push_back({ { -0.5f, -0.2f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { 0.5f, 0.5f, 0.0f }, Colors::Blue });
+	mVertices.push_back({ { 0.5f, -0.2f, 0.0f }, Colors::Blue });
+
+	
+	// Bottom Triangles
+	mVertices.push_back({ { -0.5f - 0.2f, -0.5f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { -0.5f - 0.2f, -0.2f, 0.0f }, Colors::Purple });
+	mVertices.push_back({ { 0.5f + 0.2f, -0.2f, 0.0f }, Colors::Purple });
+
+	mVertices.push_back({ { -0.5f - 0.2f, -0.5f, 0.0f }, Colors::Magenta });
+	mVertices.push_back({ { 0.5f + 0.2f, -0.2f, 0.0f }, Colors::Magenta });
+	mVertices.push_back({ { 0.5f + 0.2f, -0.5f, 0.0f }, Colors::Magenta });
 }
