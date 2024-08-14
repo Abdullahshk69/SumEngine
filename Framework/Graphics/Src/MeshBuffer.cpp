@@ -32,7 +32,7 @@ void MeshBuffer::SetTopology(Topology topology)
 void MeshBuffer::Render() const
 {
 	auto context = GraphicsSystem::Get()->GetContext();
-	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	context->IASetPrimitiveTopology(mTopology);
 	UINT offset = 0;
 	context->IASetVertexBuffers(0, 1, &mVertexBuffer, &mVertexSize, &offset);
 	context->Draw((UINT)mVertexCount, 0);
@@ -42,6 +42,7 @@ void MeshBuffer::CreateVertexBuffer(const void* vertices, uint32_t vertexSize, u
 {
 	mVertexSize = vertexSize;
 	mVertexCount = vertexCount;
+
 	auto device = GraphicsSystem::Get()->GetDevice();
 	//=================================================
 	// create a vertex buffer

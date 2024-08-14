@@ -24,8 +24,6 @@ protected:
 	SumEngine::Graphics::Camera mCamera;
 	SumEngine::Graphics::ConstantBuffer mConstantBuffer;
 	SumEngine::Graphics::MeshBuffer mMeshBuffer;
-
-	VertexShader mVertexShader;
-	ID3D11InputLayout* mInputLayout = nullptr;
-	PixelShader mPixelShader;
+	SumEngine::Graphics::VertexShader mVertexShader;
+	SumEngine::Graphics::PixelShader mPixelShader;
 };

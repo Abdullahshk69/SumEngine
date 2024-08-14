@@ -8,6 +8,9 @@ using namespace SumEngine::Graphics;
 void PixelShader::Initialize(const std::filesystem::path& filePath)
 {
 	auto device = GraphicsSystem::Get()->GetDevice();
+	DWORD shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
+	ID3DBlob* shaderBlob = nullptr;
+	ID3DBlob* errorBlob = nullptr;
 	HRESULT hr = D3DCompileFromFile(
 		filePath.c_str(),
 		nullptr,
@@ -36,8 +39,11 @@ void PixelShader::Initialize(const std::filesystem::path& filePath)
 
 void PixelShader::Terminate()
 {
+	SafeRelease(mPixelShader);
 }
 
 void PixelShader::Bind()
 {
+	auto context = GraphicsSystem::Get()->GetContext();
+	context->PSSetShader(mPixelShader, nullptr, 0);
 }
