@@ -65,6 +65,14 @@ void ShapeState::CreateShape()
 	mVertices.push_back({ { 0.5f, -0.5f, 0.5f }, Colors::Blue });
 }
 
+float gRotationX = 0.0f;
+float gRotationY = 0.0f;
+void ShapeState::Update(float deltaTime)
+{
+	gRotationX += Math::Constants::HalfPi * deltaTime * 0.25f;
+	gRotationY += Math::Constants::HalfPi * deltaTime * 0.5f;
+}
+
 void ShapeState::Initialize()
 {
 	// create a simple shape in NDC space (-1/1, -1/1, 0/1)
@@ -89,14 +97,6 @@ void ShapeState::Terminate()
 	mConstantBuffer.Terminate();
 	mMeshBuffer.Terminate();
 	mVertices.clear();
-}
-
-float gRotationX = 0.0f;
-float gRotationY = 0.0f;
-void ShapeState::Update(float deltaTime)
-{
-	gRotationX += Math::Constants::HalfPi * deltaTime * 0.25f;
-	gRotationY += Math::Constants::HalfPi * deltaTime * 0.5f;
 }
 
 void ShapeState::Render()
