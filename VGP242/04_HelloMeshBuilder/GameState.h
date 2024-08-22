@@ -11,6 +11,8 @@ public:
 
 	void Update(float deltaTime);
 protected:
+	void UpdateCamera(float deltaTime);
+
 	SumEngine::Graphics::Camera mCamera;
 	SumEngine::Graphics::ConstantBuffer mConstantBuffer;
 	SumEngine::Graphics::MeshBuffer mMeshBuffer;
