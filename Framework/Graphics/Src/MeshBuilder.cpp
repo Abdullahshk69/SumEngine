@@ -267,3 +267,36 @@ MeshPC SumEngine::Graphics::MeshBuilder::CreateSpherePC(int slices, int rings, f
 	return mesh;
 }
 
+MeshPX MeshBuilder::CreateSpherePX(int slices, int rings, float radius)
+{
+	MeshPX mesh;
+	
+
+	float vertRotation = (Math::Constants::Pi / static_cast<float>(rings - 1));
+	float horzRotation = (Math::Constants::TwoPi / static_cast<float>(slices));
+	float uStep = 1.0f / static_cast<float>(slices);
+	float vStep = 1.0f / static_cast<float>(rings);
+	for (int r = 0; r <= rings; ++r)
+	{
+		float ring = static_cast<float>(r);
+		float phi = ring * vertRotation;
+		for (int s = 0; s <= slices; ++s)
+		{
+			float slice = static_cast<float>(s);
+			float rotation = slice * horzRotation;
+
+			float u = 1.0f - (uStep * slice);
+			float v = vStep * ring;
+			mesh.vertices.push_back({ {
+					radius * sin(rotation) * sin(phi),
+					radius * cos(phi),
+					radius * cos(rotation) * sin(phi)},
+					{u, v} });
+		}
+	}
+
+	CreatePlaneIndices(mesh.indices, rings, slices);
+
+	return mesh;
+}
+
