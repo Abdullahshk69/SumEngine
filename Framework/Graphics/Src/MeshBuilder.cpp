@@ -413,7 +413,7 @@ MeshPC MeshBuilder::CreateCylinderPC(int slices, int rings)
 	return mesh;
 }
 
-MeshPC SumEngine::Graphics::MeshBuilder::CreateSpherePC(int slices, int rings, float radius)
+MeshPC MeshBuilder::CreateSpherePC(int slices, int rings, float radius)
 {
 	MeshPC mesh;
 	int index = rand() % 10;
