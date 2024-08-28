@@ -10,7 +10,13 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 	config.appname = L"Hello Shapes";
 
 	App& myApp = MainApp();
-	myApp.AddState<GameState>("TriangleStateShape");
+	myApp.AddState<MeshPCCube>("Cube");
+	myApp.AddState<MeshPCRect>("Rect");
+	myApp.AddState<MeshPCPlane>("Plane");
+	myApp.AddState<MeshPCSphere>("Sphere");
+	myApp.AddState<MeshPCCylinder>("Cylinder");
+	myApp.AddState<MeshPXSkybox>("Skybox");
+	myApp.AddState<MeshPXSkysphere>("Skysphere");
 	myApp.Run(config);
 	return(0);
 }
