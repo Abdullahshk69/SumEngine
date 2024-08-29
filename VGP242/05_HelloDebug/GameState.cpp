@@ -9,10 +9,8 @@ using namespace SumEngine::Input;
 
 void GameState::Initialize()
 {
-	//MeshPC mesh = MeshBuilder::CreateCubePC(1.0f);
-	//MeshPX mesh = MeshBuilder::CreatePlanePX(5, 5, 1.0f);
 	MeshPX mesh = MeshBuilder::CreateSpherePX(60, 60, 1.0f);
-	//MeshPX mesh = MeshBuilder::CreateSkySpherePX(50, 50, 100.0f);
+	
 	mCamera.SetPosition({ 0.0f, 1.0f, -5.0f });
 	mCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
 
