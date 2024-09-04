@@ -5,10 +5,14 @@
 enum class DebugDrawType
 {
 	None,
+	Cone,
 	Line,
 	Sphere,
 	AABB,
-	AABBFilled
+	AABBFilled,
+	Sonic,
+	Oval,
+	OvalFilled
 };
 
 class GameState : public SumEngine::AppState
