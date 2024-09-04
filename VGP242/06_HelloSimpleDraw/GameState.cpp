@@ -19,7 +19,7 @@ const char* gDrawTypeNames[] =
 	"OvalFilled"
 };
 
-struct SonicCone
+struct Cone
 {
 	// positions
 	Vector3 circleCenter;
@@ -29,7 +29,7 @@ struct SonicCone
 	int slices;
 	float radius;
 
-	SonicCone()
+	Cone()
 	{
 		circleCenter = Vector3::Zero;
 		coneTip = Vector3::YAxis;
@@ -92,15 +92,15 @@ struct Sonic
 	// Arms
 	Oval leftArm, rightArm;
 	Sphere leftHand, rightHand;
-	Oval lf1, lf2, lf3, lf4, lf5,
-		rf1, rf2, rf3, rf4, rf5;
+	Oval leftFingers[5];
+	Oval rightFingers[5];
 
 	// Legs
 	Oval leftLeg, rightLeg;
 	Oval leftBoot, rightBoot;
 
 	// Spikes
-	std::vector<SonicCone> cones;
+	std::vector<Cone> cones;
 	Color coneColor;
 
 	Sonic()
@@ -112,33 +112,139 @@ struct Sonic
 Sonic sonic;
 void CreateSonic(Sonic& sonic)
 {
+	// Face
+	sonic.face.sphereCenter = { 0.0f, 0.7f, -1.0f };
+	sonic.face.radius = 1.0f;
+	sonic.face.color = Colors::Blue;
+
 	// Eyes
-		// Left Eye
-	sonic.leftEye.center = { 0.6f, 0.7f, -1.5f };
+	// Left Eye
+	sonic.leftEye.center = { 0.4f, 0.7f, -1.5f };
 	sonic.leftEye.rx = 0.2f;
 	sonic.leftEye.ry = 0.6f;
 	sonic.leftEye.rz = 0.1f;
 	sonic.leftEye.color = { 129, 129, 138, 255 };
-		// Right Eye
-	sonic.rightEye.center = { -0.6f, 0.7f, -1.5f };
+	// Right Eye
+	sonic.rightEye.center = { -0.4f, 0.7f, -1.5f };
 	sonic.rightEye.rx = 0.2f;
 	sonic.rightEye.ry = 0.6f;
 	sonic.rightEye.rz = 0.1f;
 	sonic.rightEye.color = { 129, 129, 138, 255 };
 
 	// Pupils
-		// Left Pupil
-	sonic.leftPupil.center = { 0.6f, 0.4f, -1.6f };
+	// Left Pupil
+	sonic.leftPupil.center = { 0.4f, 0.4f, -1.6f };
 	sonic.leftPupil.rx = 0.1f;
 	sonic.leftPupil.ry = 0.2f;
 	sonic.leftPupil.rz = 0.1f;
 	sonic.leftPupil.color = { 0, 0, 0, 255 };
-		// Right Pupil
-	sonic.rightPupil.center = { -0.6f, 0.4f, -1.6f };
+	// Right Pupil
+	sonic.rightPupil.center = { -0.4f, 0.4f, -1.6f };
 	sonic.rightPupil.rx = 0.1f;
 	sonic.rightPupil.ry = 0.2f;
 	sonic.rightPupil.rz = 0.1f;
 	sonic.rightPupil.color = { 0, 0, 0, 255 };
+
+	// Body
+	sonic.body.center = { 0.0f, -0.3f, -1.0f };
+	sonic.body.rx = 0.5f;
+	sonic.body.ry = 0.8f;
+	sonic.body.rz = 0.3f;
+	sonic.body.color = Colors::Blue;
+
+	// Arms
+	// Left Arm
+	sonic.leftArm.center = { 0.9f, -0.3f, -1.0f };
+	sonic.leftArm.rx = 0.5f;
+	sonic.leftArm.ry = 0.1f;
+	sonic.leftArm.rz = 0.2f;
+	sonic.leftArm.color = Colors::Blue;
+	// Right Arm
+	sonic.rightArm.center = { -0.9f, -0.3f, -1.0f };
+	sonic.rightArm.rx = 0.5f;
+	sonic.rightArm.ry = 0.1f;
+	sonic.rightArm.rz = 0.2f;
+	sonic.rightArm.color = Colors::Blue;
+
+	// Hands
+	// Left Hand
+	sonic.leftHand.sphereCenter = { 1.5f, -0.3f, -1.0f };
+	sonic.leftHand.radius = 0.3f;
+	sonic.leftHand.color = Colors::White;
+	// Right Hand
+	sonic.rightHand.sphereCenter = { -1.5f, -0.3f, -1.0f };
+	sonic.rightHand.radius = 0.3f;
+	sonic.rightHand.color = Colors::White;
+
+	// Fingers
+	// Left Fingers
+	for (int i = 0; i < 5; ++i)
+	{
+		sonic.leftFingers[i].center = { 1.8f, -0.3f, -0.15f * i - 0.8f }; // Adjust spacing for each finger
+		sonic.leftFingers[i].rx = 0.2f;
+		sonic.leftFingers[i].ry = 0.1f;
+		sonic.leftFingers[i].rz = 0.1f;
+		sonic.leftFingers[i].color = Colors::Gray;
+	}
+
+	// Right Fingers
+	for (int i = 0; i < 5; ++i)
+	{
+		sonic.rightFingers[i].center = { -1.8f, -0.3f, -0.15f * i - 0.8f }; // Adjust spacing for each finger
+		sonic.rightFingers[i].rx = 0.2f;
+		sonic.rightFingers[i].ry = 0.1f;
+		sonic.rightFingers[i].rz = 0.1f;
+		sonic.rightFingers[i].color = Colors::Gray;
+	}
+
+	// Legs
+	// Left Leg
+	sonic.leftLeg.center = { 0.4f, -1.4f, -1.0f };
+	sonic.leftLeg.rx = 0.1f;
+	sonic.leftLeg.ry = 0.7f;
+	sonic.leftLeg.rz = 0.1f;
+	sonic.leftLeg.color = Colors::Blue;
+	// Right Leg
+	sonic.rightLeg.center = { -0.4f, -1.4f, -1.0f };
+	sonic.rightLeg.rx = 0.1f;
+	sonic.rightLeg.ry = 0.7f;
+	sonic.rightLeg.rz = 0.1f;
+	sonic.rightLeg.color = Colors::Blue;
+
+	// Boots
+	// Left Boot
+	sonic.leftBoot.center = { 0.4f, -2.0f, -1.3f };
+	sonic.leftBoot.rx = 0.2f;
+	sonic.leftBoot.ry = 0.2f;
+	sonic.leftBoot.rz = 0.5f;
+	sonic.leftBoot.color = Colors::Red;
+	// Right Boot
+	sonic.rightBoot.center = { -0.4f, -2.0f, -1.3f };
+	sonic.rightBoot.rx = 0.2f;
+	sonic.rightBoot.ry = 0.2f;
+	sonic.rightBoot.rz = 0.5f;
+	sonic.rightBoot.color = Colors::Red;
+
+	// Spikes (Cones)
+	sonic.cones.resize(3);
+
+	// Top Spike
+	sonic.cones[0].circleCenter = { 0.0f, 0.9f, 0.2f };
+	sonic.cones[0].coneTip = { 0.0f, 1.4f, -0.3f };
+	sonic.cones[0].radius = 0.3f;
+	sonic.cones[0].slices = 20;
+
+	// Middle Spike
+	sonic.cones[1].circleCenter = { 0.0f, 0.7f, 0.0f };
+	sonic.cones[1].coneTip = { 0.0f, 1.1f, -0.5f };
+	sonic.cones[1].radius = 0.35f;
+	sonic.cones[1].slices = 20;
+
+	// Bottom Spike
+	sonic.cones[2].circleCenter = { 0.0f, 0.5f, -0.2f };
+	sonic.cones[2].coneTip = { 0.0f, 0.8f, -0.7f };
+	sonic.cones[2].radius = 0.4f;
+	sonic.cones[2].slices = 20;
 }
 
 void DrawSonic(const Sonic& sonic)
@@ -153,7 +259,43 @@ void DrawSonic(const Sonic& sonic)
 	// Pupils
 	SimpleDraw::AddFilledOval(sonic.leftPupil.slices, sonic.leftPupil.rings, sonic.leftPupil.rx, sonic.leftPupil.ry, sonic.leftPupil.rz, sonic.leftPupil.center, sonic.leftPupil.color);
 	SimpleDraw::AddFilledOval(sonic.rightPupil.slices, sonic.rightPupil.rings, sonic.rightPupil.rx, sonic.rightPupil.ry, sonic.rightPupil.rz, sonic.rightPupil.center, sonic.rightPupil.color);
+
+	// Body
+	SimpleDraw::AddFilledOval(sonic.body.slices, sonic.body.rings, sonic.body.rx, sonic.body.ry, sonic.body.rz, sonic.body.center, sonic.body.color);
+
+	// Arms
+	SimpleDraw::AddFilledOval(sonic.leftArm.slices, sonic.leftArm.rings, sonic.leftArm.rx, sonic.leftArm.ry, sonic.leftArm.rz, sonic.leftArm.center, sonic.leftArm.color);
+	SimpleDraw::AddFilledOval(sonic.rightArm.slices, sonic.rightArm.rings, sonic.rightArm.rx, sonic.rightArm.ry, sonic.rightArm.rz, sonic.rightArm.center, sonic.rightArm.color);
+
+	// Hands
+	SimpleDraw::AddFilledSphere(sonic.leftHand.slices, sonic.leftHand.rings, sonic.leftHand.radius, sonic.leftHand.sphereCenter, sonic.leftHand.color);
+	SimpleDraw::AddFilledSphere(sonic.rightHand.slices, sonic.rightHand.rings, sonic.rightHand.radius, sonic.rightHand.sphereCenter, sonic.rightHand.color);
+
+	// Legs
+	SimpleDraw::AddFilledOval(sonic.leftLeg.slices, sonic.leftLeg.rings, sonic.leftLeg.rx, sonic.leftLeg.ry, sonic.leftLeg.rz, sonic.leftLeg.center, sonic.leftLeg.color);
+	SimpleDraw::AddFilledOval(sonic.rightLeg.slices, sonic.rightLeg.rings, sonic.rightLeg.rx, sonic.rightLeg.ry, sonic.rightLeg.rz, sonic.rightLeg.center, sonic.rightLeg.color);
+
+	// Boots
+	SimpleDraw::AddFilledOval(sonic.leftBoot.slices, sonic.leftBoot.rings, sonic.leftBoot.rx, sonic.leftBoot.ry, sonic.leftBoot.rz, sonic.leftBoot.center, sonic.leftBoot.color);
+	SimpleDraw::AddFilledOval(sonic.rightBoot.slices, sonic.rightBoot.rings, sonic.rightBoot.rx, sonic.rightBoot.ry, sonic.rightBoot.rz, sonic.rightBoot.center, sonic.rightBoot.color);
+
+	// Spikes (Cones)
+	for (const auto& cone : sonic.cones)
+	{
+		SimpleDraw::AddCone(cone.slices, cone.radius, cone.circleCenter, cone.coneTip, sonic.coneColor);
+	}
+
+	// Fingers
+	for (const auto& finger : sonic.leftFingers)
+	{
+		SimpleDraw::AddFilledOval(finger.slices, finger.rings, finger.rx, finger.ry, finger.rz, finger.center, finger.color);
+	}
+	for (const auto& finger : sonic.rightFingers)
+	{
+		SimpleDraw::AddFilledOval(finger.slices, finger.rings, finger.rx, finger.ry, finger.rz, finger.center, finger.color);
+	}
 }
+
 
 void GameState::Initialize()
 {
@@ -164,7 +306,7 @@ void GameState::Initialize()
 
 void GameState::Terminate()
 {
-	
+
 }
 
 
@@ -278,7 +420,7 @@ void GameState::DebugUI()
 		// ImGui::DragFloat("SphereRadius", &radius, 0.1f, 0.01f, 1000000.0f);
 		ImGui::DragFloat3("Pos", &minExtents.x);
 	}
-	
+
 	else if (mDebugDrawType == DebugDrawType::Cone)
 	{
 		ImGui::DragFloat3("Circle Center", &minExtents.x);
@@ -310,27 +452,20 @@ void GameState::DebugUI()
 		// Head
 		if (ImGui::CollapsingHeader("Head"))
 		{
-
-
-
 			// Face
 			if (ImGui::CollapsingHeader("Face"))
 			{
-				//ImGui::Unindent();
 				ImGui::DragFloat3("Face Pos", &sonic.face.sphereCenter.x, 0.1f);
-				ImGui::Indent();
-				ImGui::ColorEdit4("Face Color", &sonic.face.color.r);
-				ImGui::Indent();
 				ImGui::DragFloat("Face Radius", &sonic.face.radius, 0.1f);
+				ImGui::ColorEdit4("Face Color", &sonic.face.color.r);
 			}
-
 
 			// Eyes
 			if (ImGui::CollapsingHeader("Eyes"))
 			{
 				if (ImGui::CollapsingHeader("Left Eye"))
 				{
-					ImGui::DragFloat3("Left Eye", &sonic.leftEye.center.x, 0.1f);
+					ImGui::DragFloat3("Left Eye Pos", &sonic.leftEye.center.x, 0.1f);
 					ImGui::DragFloat("Left Eye Rx", &sonic.leftEye.rx, 0.1f);
 					ImGui::DragFloat("Left Eye Ry", &sonic.leftEye.ry, 0.1f);
 					ImGui::DragFloat("Left Eye Rz", &sonic.leftEye.rz, 0.1f);
@@ -339,7 +474,7 @@ void GameState::DebugUI()
 
 				if (ImGui::CollapsingHeader("Right Eye"))
 				{
-					ImGui::DragFloat3("Right Eye", &sonic.rightEye.center.x, 0.1f);
+					ImGui::DragFloat3("Right Eye Pos", &sonic.rightEye.center.x, 0.1f);
 					ImGui::DragFloat("Right Eye Rx", &sonic.rightEye.rx, 0.1f);
 					ImGui::DragFloat("Right Eye Ry", &sonic.rightEye.ry, 0.1f);
 					ImGui::DragFloat("Right Eye Rz", &sonic.rightEye.rz, 0.1f);
@@ -347,11 +482,12 @@ void GameState::DebugUI()
 				}
 			}
 
+			// Pupils
 			if (ImGui::CollapsingHeader("Pupils"))
 			{
 				if (ImGui::CollapsingHeader("Left Pupil"))
 				{
-					ImGui::DragFloat3("Left Pupil", &sonic.leftPupil.center.x, 0.1f);
+					ImGui::DragFloat3("Left Pupil Pos", &sonic.leftPupil.center.x, 0.1f);
 					ImGui::DragFloat("Left Pupil Rx", &sonic.leftPupil.rx, 0.1f);
 					ImGui::DragFloat("Left Pupil Ry", &sonic.leftPupil.ry, 0.1f);
 					ImGui::DragFloat("Left Pupil Rz", &sonic.leftPupil.rz, 0.1f);
@@ -360,7 +496,7 @@ void GameState::DebugUI()
 
 				if (ImGui::CollapsingHeader("Right Pupil"))
 				{
-					ImGui::DragFloat3("Right Pupil", &sonic.rightPupil.center.x, 0.1f);
+					ImGui::DragFloat3("Right Pupil Pos", &sonic.rightPupil.center.x, 0.1f);
 					ImGui::DragFloat("Right Pupil Rx", &sonic.rightPupil.rx, 0.1f);
 					ImGui::DragFloat("Right Pupil Ry", &sonic.rightPupil.ry, 0.1f);
 					ImGui::DragFloat("Right Pupil Rz", &sonic.rightPupil.rz, 0.1f);
@@ -369,9 +505,186 @@ void GameState::DebugUI()
 			}
 		}
 
-
 		// Body
-		
+		if (ImGui::CollapsingHeader("Body"))
+		{
+			ImGui::DragFloat3("Body Pos", &sonic.body.center.x, 0.1f);
+			ImGui::DragFloat("Body Rx", &sonic.body.rx, 0.1f);
+			ImGui::DragFloat("Body Ry", &sonic.body.ry, 0.1f);
+			ImGui::DragFloat("Body Rz", &sonic.body.rz, 0.1f);
+			ImGui::ColorEdit4("Body Color", &sonic.body.color.r);
+		}
+
+		// Arms
+		if (ImGui::CollapsingHeader("Arms"))
+		{
+			if (ImGui::CollapsingHeader("Left Arm"))
+			{
+				ImGui::DragFloat3("Left Arm Pos", &sonic.leftArm.center.x, 0.1f);
+				ImGui::DragFloat("Left Arm Rx", &sonic.leftArm.rx, 0.1f);
+				ImGui::DragFloat("Left Arm Ry", &sonic.leftArm.ry, 0.1f);
+				ImGui::DragFloat("Left Arm Rz", &sonic.leftArm.rz, 0.1f);
+				ImGui::ColorEdit4("Left Arm Color", &sonic.leftArm.color.r);
+			}
+
+			if (ImGui::CollapsingHeader("Right Arm"))
+			{
+				ImGui::DragFloat3("Right Arm Pos", &sonic.rightArm.center.x, 0.1f);
+				ImGui::DragFloat("Right Arm Rx", &sonic.rightArm.rx, 0.1f);
+				ImGui::DragFloat("Right Arm Ry", &sonic.rightArm.ry, 0.1f);
+				ImGui::DragFloat("Right Arm Rz", &sonic.rightArm.rz, 0.1f);
+				ImGui::ColorEdit4("Right Arm Color", &sonic.rightArm.color.r);
+			}
+		}
+
+		// Hands
+		if (ImGui::CollapsingHeader("Hands"))
+		{
+			if (ImGui::CollapsingHeader("Left Hand"))
+			{
+				ImGui::DragFloat3("Left Hand Pos", &sonic.leftHand.sphereCenter.x, 0.1f);
+				ImGui::DragFloat("Left Hand Radius", &sonic.leftHand.radius, 0.1f);
+				ImGui::ColorEdit4("Left Hand Color", &sonic.leftHand.color.r);
+			}
+
+			if (ImGui::CollapsingHeader("Right Hand"))
+			{
+				ImGui::DragFloat3("Right Hand Pos", &sonic.rightHand.sphereCenter.x, 0.1f);
+				ImGui::DragFloat("Right Hand Radius", &sonic.rightHand.radius, 0.1f);
+				ImGui::ColorEdit4("Right Hand Color", &sonic.rightHand.color.r);
+			}
+		}
+
+		// Fingers
+		if (ImGui::CollapsingHeader("Fingers"))
+		{
+			// Left Fingers
+			if (ImGui::CollapsingHeader("Left Fingers"))
+			{
+				ImGui::DragFloat3("Left Finger 1 Pos", &sonic.leftFingers[0].center.x, 0.1f);
+				ImGui::DragFloat("Left Finger 1 Rx", &sonic.leftFingers[0].rx, 0.1f);
+				ImGui::DragFloat("Left Finger 1 Ry", &sonic.leftFingers[0].ry, 0.1f);
+				ImGui::DragFloat("Left Finger 1 Rz", &sonic.leftFingers[0].rz, 0.1f);
+				ImGui::ColorEdit4("Left Finger 1 Color", &sonic.leftFingers[0].color.r);
+
+				ImGui::DragFloat3("Left Finger 2 Pos", &sonic.leftFingers[1].center.x, 0.1f);
+				ImGui::DragFloat("Left Finger 2 Rx", &sonic.leftFingers[1].rx, 0.1f);
+				ImGui::DragFloat("Left Finger 2 Ry", &sonic.leftFingers[1].ry, 0.1f);
+				ImGui::DragFloat("Left Finger 2 Rz", &sonic.leftFingers[1].rz, 0.1f);
+				ImGui::ColorEdit4("Left Finger 2 Color", &sonic.leftFingers[1].color.r);
+
+				ImGui::DragFloat3("Left Finger 3 Pos", &sonic.leftFingers[2].center.x, 0.1f);
+				ImGui::DragFloat("Left Finger 3 Rx", &sonic.leftFingers[2].rx, 0.1f);
+				ImGui::DragFloat("Left Finger 3 Ry", &sonic.leftFingers[2].ry, 0.1f);
+				ImGui::DragFloat("Left Finger 3 Rz", &sonic.leftFingers[2].rz, 0.1f);
+				ImGui::ColorEdit4("Left Finger 3 Color", &sonic.leftFingers[2].color.r);
+
+				ImGui::DragFloat3("Left Finger 4 Pos", &sonic.leftFingers[3].center.x, 0.1f);
+				ImGui::DragFloat("Left Finger 4 Rx", &sonic.leftFingers[3].rx, 0.1f);
+				ImGui::DragFloat("Left Finger 4 Ry", &sonic.leftFingers[3].ry, 0.1f);
+				ImGui::DragFloat("Left Finger 4 Rz", &sonic.leftFingers[3].rz, 0.1f);
+				ImGui::ColorEdit4("Left Finger 4 Color", &sonic.leftFingers[3].color.r);
+
+				ImGui::DragFloat3("Left Finger 5 Pos", &sonic.leftFingers[4].center.x, 0.1f);
+				ImGui::DragFloat("Left Finger 5 Rx", &sonic.leftFingers[4].rx, 0.1f);
+				ImGui::DragFloat("Left Finger 5 Ry", &sonic.leftFingers[4].ry, 0.1f);
+				ImGui::DragFloat("Left Finger 5 Rz", &sonic.leftFingers[4].rz, 0.1f);
+				ImGui::ColorEdit4("Left Finger 5 Color", &sonic.leftFingers[4].color.r);
+			}
+
+			// Right Fingers
+			if (ImGui::CollapsingHeader("Right Fingers"))
+			{
+				ImGui::DragFloat3("Right Finger 1 Pos", &sonic.rightFingers[0].center.x, 0.1f);
+				ImGui::DragFloat("Right Finger 1 Rx", &sonic.rightFingers[0].rx, 0.1f);
+				ImGui::DragFloat("Right Finger 1 Ry", &sonic.rightFingers[0].ry, 0.1f);
+				ImGui::DragFloat("Right Finger 1 Rz", &sonic.rightFingers[0].rz, 0.1f);
+				ImGui::ColorEdit4("Right Finger 1 Color", &sonic.rightFingers[0].color.r);
+
+				ImGui::DragFloat3("Right Finger 2 Pos", &sonic.rightFingers[1].center.x, 0.1f);
+				ImGui::DragFloat("Right Finger 2 Rx", &sonic.rightFingers[1].rx, 0.1f);
+				ImGui::DragFloat("Right Finger 2 Ry", &sonic.rightFingers[1].ry, 0.1f);
+				ImGui::DragFloat("Right Finger 2 Rz", &sonic.rightFingers[1].rz, 0.1f);
+				ImGui::ColorEdit4("Right Finger 2 Color", &sonic.rightFingers[1].color.r);
+
+				ImGui::DragFloat3("Right Finger 3 Pos", &sonic.rightFingers[2].center.x, 0.1f);
+				ImGui::DragFloat("Right Finger 3 Rx", &sonic.rightFingers[2].rx, 0.1f);
+				ImGui::DragFloat("Right Finger 3 Ry", &sonic.rightFingers[2].ry, 0.1f);
+				ImGui::DragFloat("Right Finger 3 Rz", &sonic.rightFingers[2].rz, 0.1f);
+				ImGui::ColorEdit4("Right Finger 3 Color", &sonic.rightFingers[2].color.r);
+
+				ImGui::DragFloat3("Right Finger 4 Pos", &sonic.rightFingers[3].center.x, 0.1f);
+				ImGui::DragFloat("Right Finger 4 Rx", &sonic.rightFingers[3].rx, 0.1f);
+				ImGui::DragFloat("Right Finger 4 Ry", &sonic.rightFingers[3].ry, 0.1f);
+				ImGui::DragFloat("Right Finger 4 Rz", &sonic.rightFingers[3].rz, 0.1f);
+				ImGui::ColorEdit4("Right Finger 4 Color", &sonic.rightFingers[3].color.r);
+
+				ImGui::DragFloat3("Right Finger 5 Pos", &sonic.rightFingers[4].center.x, 0.1f);
+				ImGui::DragFloat("Right Finger 5 Rx", &sonic.rightFingers[4].rx, 0.1f);
+				ImGui::DragFloat("Right Finger 5 Ry", &sonic.rightFingers[4].ry, 0.1f);
+				ImGui::DragFloat("Right Finger 5 Rz", &sonic.rightFingers[4].rz, 0.1f);
+				ImGui::ColorEdit4("Right Finger 5 Color", &sonic.rightFingers[4].color.r);
+			}
+		}
+
+		// Legs
+		if (ImGui::CollapsingHeader("Legs"))
+		{
+			if (ImGui::CollapsingHeader("Left Leg"))
+			{
+				ImGui::DragFloat3("Left Leg Pos", &sonic.leftLeg.center.x, 0.1f);
+				ImGui::DragFloat("Left Leg Rx", &sonic.leftLeg.rx, 0.1f);
+				ImGui::DragFloat("Left Leg Ry", &sonic.leftLeg.ry, 0.1f);
+				ImGui::DragFloat("Left Leg Rz", &sonic.leftLeg.rz, 0.1f);
+				ImGui::ColorEdit4("Left Leg Color", &sonic.leftLeg.color.r);
+			}
+
+			if (ImGui::CollapsingHeader("Right Leg"))
+			{
+				ImGui::DragFloat3("Right Leg Pos", &sonic.rightLeg.center.x, 0.1f);
+				ImGui::DragFloat("Right Leg Rx", &sonic.rightLeg.rx, 0.1f);
+				ImGui::DragFloat("Right Leg Ry", &sonic.rightLeg.ry, 0.1f);
+				ImGui::DragFloat("Right Leg Rz", &sonic.rightLeg.rz, 0.1f);
+				ImGui::ColorEdit4("Right Leg Color", &sonic.rightLeg.color.r);
+			}
+		}
+
+		// Boots
+		if (ImGui::CollapsingHeader("Boots"))
+		{
+			if (ImGui::CollapsingHeader("Left Boot"))
+			{
+				ImGui::DragFloat3("Left Boot Pos", &sonic.leftBoot.center.x, 0.1f);
+				ImGui::DragFloat("Left Boot Rx", &sonic.leftBoot.rx, 0.1f);
+				ImGui::DragFloat("Left Boot Ry", &sonic.leftBoot.ry, 0.1f);
+				ImGui::DragFloat("Left Boot Rz", &sonic.leftBoot.rz, 0.1f);
+				ImGui::ColorEdit4("Left Boot Color", &sonic.leftBoot.color.r);
+			}
+
+			if (ImGui::CollapsingHeader("Right Boot"))
+			{
+				ImGui::DragFloat3("Right Boot Pos", &sonic.rightBoot.center.x, 0.1f);
+				ImGui::DragFloat("Right Boot Rx", &sonic.rightBoot.rx, 0.1f);
+				ImGui::DragFloat("Right Boot Ry", &sonic.rightBoot.ry, 0.1f);
+				ImGui::DragFloat("Right Boot Rz", &sonic.rightBoot.rz, 0.1f);
+				ImGui::ColorEdit4("Right Boot Color", &sonic.rightBoot.color.r);
+			}
+		}
+
+		// Spikes (Cones)
+		if (ImGui::CollapsingHeader("Spikes"))
+		{
+			for (int i = 0; i < sonic.cones.size(); ++i)
+			{
+				if (ImGui::CollapsingHeader(("Spike " + std::to_string(i + 1)).c_str()))
+				{
+					ImGui::DragFloat3(("Spike " + std::to_string(i + 1) + " Base Pos").c_str(), &sonic.cones[i].circleCenter.x, 0.1f);
+					ImGui::DragFloat3(("Spike " + std::to_string(i + 1) + " Tip Pos").c_str(), &sonic.cones[i].coneTip.x, 0.1f);
+					ImGui::DragFloat(("Spike " + std::to_string(i + 1) + " Radius").c_str(), &sonic.cones[i].radius, 0.1f);
+					ImGui::ColorEdit4(("Spike " + std::to_string(i + 1) + " Color").c_str(), &sonic.coneColor.r);
+				}
+			}
+		}
 	}
 
 	else if (mDebugDrawType == DebugDrawType::Oval)
