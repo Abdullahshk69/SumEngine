@@ -6,38 +6,79 @@ using namespace SumEngine::Graphics;
 using namespace SumEngine::Core;
 using namespace SumEngine::Input;
 
+const char* gDrawTypeNames[] =
+{
+	"None",
+	"Sun",
+	"Venus",
+	"Earth",
+	"Mars",
+	"Jupiter",
+	"Saturn",
+	"Neptune",
+	"Uranus",
+	"Pluto",
+	"Galaxy"
+};
+
+const char* cTextureLocations[] =
+{
+	"planets/sun.jpg",
+	"planets/mercury.jpg",
+	"planets/venus.jpg",
+	"planets/earth.jpg",
+	"planets/mars.jpg",
+	"planets/jupiter.jpg",
+	"planets/saturn.jpg",
+	"planets/neptune.jpg",
+	"planets/uranus.jpg",
+	"planets/pluto.jpg",
+	"skysphere/space.jpg"
+};
+
+namespace
+{
+	void CreatePlanets()
+	{
+		
+	}
+}
 
 void GameState::Initialize()
 {
+	MeshPX meshes[(int)SolarSystem::Galaxy + 1];
+
+	meshes[(int)SolarSystem::Sun] = MeshBuilder::CreateSpherePX(60, 60, 4.0f);
 	MeshPX mesh = MeshBuilder::CreateSpherePX(60, 60, 1.0f);
 	MeshPX mesh2 = MeshBuilder::CreateSpherePX(60, 60, 2.0f);
-	
+
 	mCamera.SetPosition({ 0.0f, 1.0f, -5.0f });
 	mCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
 	mRenderTargetCamera.SetPosition({ 0.0f, 1.0f, -5.0f });
 	mRenderTargetCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
 	mRenderTargetCamera.SetAspectRatio(1.0f);
 
-	objects[0].mMeshBuffer.Initialize<MeshPX>(mesh);
-	objects[1].mMeshBuffer.Initialize<MeshPX>(mesh2);
+	mObjects[0].mMeshBuffer.Initialize<MeshPX>(mesh);
+	mObjects[1].mMeshBuffer.Initialize<MeshPX>(mesh2);
 	//mMeshBuffer.Initialize<MeshPX>(mesh);
-	objects[0].mConstantBuffer.Initialize(sizeof(Matrix4));
-	objects[1].mConstantBuffer.Initialize(sizeof(Matrix4));
+	mConstantBuffer.Initialize(sizeof(Matrix4));
 	//mConstantBuffer.Initialize(sizeof(Matrix4));
 
 	std::filesystem::path shaderFile = L"../../Assets/Shaders/DoTexture.fx";
-	objects[0].mVertexShader.Initialize<VertexPX>(shaderFile);
-	objects[1].mVertexShader.Initialize<VertexPX>(shaderFile);
+	mVertexShader.Initialize<VertexPX>(shaderFile);
 	//mVertexShader.Initialize<VertexPX>(shaderFile);
-	objects[0].mPixelShader.Initialize(shaderFile);
-	objects[1].mPixelShader.Initialize(shaderFile);
+	mPixelShader.Initialize(shaderFile);
 	//mPixelShader.Initialize(shaderFile);
 
-	objects[0].mDiffuseTexture.Initialize("../../Assets/Images/planets/earth/earth.jpg");
-	objects[1].mDiffuseTexture.Initialize("../../Assets/Images/planets/jupiter.jpg");
+	/*for (int i = 0; i < (int)SolarSystem::End; i++)
+	{
+		mObjects[i].mDiffuseTexture.Initialize("../../Assets/Images/" + (std::string)cTextureLocations[i]);
+	}*/
+
+	mObjects[0].mDiffuseTexture.Initialize("../../Assets/Images/planets/earth/earth.jpg");
+	mObjects[1].mDiffuseTexture.Initialize("../../Assets/Images/planets/jupiter.jpg");
 	//mDiffuseTexture.Initialize("../../Assets/Images/planets/earth/earth.jpg");
-	objects[0].mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
-	objects[1].mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
+	mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
 	//mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
 
 	constexpr uint32_t size = 512;
@@ -47,19 +88,14 @@ void GameState::Initialize()
 void GameState::Terminate()
 {
 	mRenderTarget.Terminate();
-	objects[0].mSampler.Terminate();
-	objects[0].mDiffuseTexture.Terminate();
-	objects[0].mPixelShader.Terminate();
-	objects[0].mVertexShader.Terminate();
-	objects[0].mConstantBuffer.Terminate();
-	objects[0].mMeshBuffer.Terminate();
-
-	objects[1].mSampler.Terminate();
-	objects[1].mDiffuseTexture.Terminate();
-	objects[1].mPixelShader.Terminate();
-	objects[1].mVertexShader.Terminate();
-	objects[1].mConstantBuffer.Terminate();
-	objects[1].mMeshBuffer.Terminate();
+	mSampler.Terminate();
+	mObjects[1].mDiffuseTexture.Terminate();
+	mObjects[0].mDiffuseTexture.Terminate();
+	mPixelShader.Terminate();
+	mVertexShader.Terminate();
+	mConstantBuffer.Terminate();
+	mObjects[0].mMeshBuffer.Terminate();
+	mObjects[1].mMeshBuffer.Terminate();
 }
 
 void GameState::UpdateCamera(float deltaTime)
@@ -105,17 +141,11 @@ void GameState::Update(float deltaTime)
 
 void GameState::Render()
 {
-	objects[0].mVertexShader.Bind();
-	objects[0].mPixelShader.Bind();
+	mVertexShader.Bind();
+	mPixelShader.Bind();
 
-	objects[1].mVertexShader.Bind();
-	objects[1].mPixelShader.Bind();
-
-	objects[0].mDiffuseTexture.BindPS(0);
-	objects[0].mSampler.BindPS(0);
-
-	objects[1].mDiffuseTexture.BindPS(0);
-	objects[1].mSampler.BindPS(0);
+	mObjects[0].mDiffuseTexture.BindPS(0);
+	mSampler.BindPS(0);
 
 	// constant buffer
 	Matrix4 matWorld = Matrix4::Identity;
@@ -123,32 +153,44 @@ void GameState::Render()
 	Matrix4 matProj = mCamera.GetProjectionMatrix();
 	Matrix4 matFinal = matWorld * matView * matProj;
 	Matrix4 wvp = Transpose(matFinal);
-	objects[0].mConstantBuffer.Update(&wvp);
-	objects[0].mConstantBuffer.BindVS(0);
+	mConstantBuffer.Update(&wvp);
+	mConstantBuffer.BindVS(0);
+
+	// mConstantBuffer.BindVS(0)
+	// for(planet : planets)
+	//{
+	//	matWorld = planet.transform
+	//  matFinal = matWorld * matView * matProj
+	// wvp = Transpose(matFinal)
+	// mContantBuffer.Update(&mvp)
+	// //maybe bind again
+	// planet.meshBuffer.Render()
+	//}
 
 	// mesh buffer
-	objects[0].mMeshBuffer.Render();
+	mObjects[0].mMeshBuffer.Render();
+
+
+	mObjects[1].mDiffuseTexture.BindPS(0);
 
 	Matrix4 matWorld2 = Matrix4::Identity;
 	Matrix4 matView2 = mCamera.GetViewMatrix();
 	Matrix4 matProj2 = mCamera.GetProjectionMatrix();
 	Matrix4 matFinal2 = matWorld2 * matView2 * matProj2;
 	Matrix4 wvp2 = Transpose(matFinal2);
-	objects[1].mConstantBuffer.Update(&wvp2);
-	objects[1].mConstantBuffer.BindVS(0);
 
-	objects[1].mMeshBuffer.Render();
+	mObjects[1].mMeshBuffer.Render();
 
 	Matrix4 matWorld1 = Matrix4::Identity;
 	Matrix4 matView1 = mRenderTargetCamera.GetViewMatrix();
 	Matrix4 matProj1 = mRenderTargetCamera.GetProjectionMatrix();
 	Matrix4 matFinal1 = matWorld1 * matView1 * matProj1;
 	Matrix4 wvp1 = Transpose(matFinal1);
-	objects[0].mConstantBuffer.Update(&wvp1);
-	objects[0].mConstantBuffer.BindVS(0);
+	mConstantBuffer.Update(&wvp1);
+	mConstantBuffer.BindVS(0);
 
 	mRenderTarget.BeginRender();
-	objects[0].mMeshBuffer.Render();
+		mObjects[0].mMeshBuffer.Render();
 	mRenderTarget.EndRender();
 }
 
@@ -165,4 +207,9 @@ void GameState::DebugUI()
 		{ 1, 1, 1, 1 },
 		{ 1, 1, 1, 1 });
 	ImGui::End();
+}
+
+void PlanetPosition()
+{
+
 }
