@@ -175,15 +175,15 @@ void GameState::UpdateCamera(float deltaTime)
 }
 
 float totalTime = 0.0f;
-int currentRenderTarget = 0;
-float renderTargetDistance = 0.0f;
-bool ringsToggle = true;
 void GameState::Update(float deltaTime)
 {
 	totalTime += deltaTime / 10.0f;
 	UpdateCamera(deltaTime);
 }
 
+int currentRenderTarget = 0;
+float renderTargetDistance = 0.0f;
+bool ringsToggle = true;
 void GameState::Render()
 {
 	// Render Orbit Rings
@@ -192,13 +192,12 @@ void GameState::Render()
 		for (int i = 1; i < (int)SolarSystem::Galaxy; i++)
 		{
 			SimpleDraw::AddGroundCircle(100, mObjects[i].distanceFromSun, { 0,0,0 }, Colors::Gray);
-			SimpleDraw::AddGroundCircle(100, mObjects[i].distanceFromSun, { 0,0,0 }, Colors::Gray);
 		}
 		// Saturn Ring
 		{
-			Matrix4 ringWorld = Matrix4::RotationY(mObjects[(int)SolarSystem::Saturn].rotationSpeed * totalTime) * Matrix4::Translation(Vector3::ZAxis * mObjects[(int)SolarSystem::Saturn].distanceFromSun) * Matrix4::RotationY(mObjects[(int)SolarSystem::Saturn].orbitSpeed * totalTime / 10.0f);
-			Vector3 ringVec = { ringWorld._41,ringWorld._42,ringWorld._43 };
-			SimpleDraw::AddGroundCircle(100, 25, ringVec, Colors::White);
+			Matrix4 ringWorldPosition = Matrix4::RotationY(mObjects[(int)SolarSystem::Saturn].rotationSpeed * totalTime) * Matrix4::Translation(Vector3::ZAxis * mObjects[(int)SolarSystem::Saturn].distanceFromSun) * Matrix4::RotationY(mObjects[(int)SolarSystem::Saturn].orbitSpeed * totalTime / 10.0f);
+			Vector3 ringPosition = { ringWorldPosition._41,ringWorldPosition._42,ringWorldPosition._43 };
+			SimpleDraw::AddGroundCircle(100, 25, ringPosition, Colors::White);
 		}
 
 		SimpleDraw::Render(mCamera);
@@ -243,7 +242,6 @@ void GameState::Render()
 }
 
 bool buttonValue = false;
-int intValue = 0;
 void GameState::DebugUI()
 {
 	ImGui::Begin("Debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
