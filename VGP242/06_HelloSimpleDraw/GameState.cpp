@@ -16,7 +16,9 @@ const char* gDrawTypeNames[] =
 	"AABBFilled",
 	"Sonic",
 	"Oval",
-	"OvalFilled"
+	"OvalFilled",
+	"GroundCircle",
+	"GroundPlane"
 };
 
 struct Cone
@@ -403,6 +405,16 @@ void GameState::Render()
 		SimpleDraw::AddFilledOval(slices, rings, rx, ry, rz, minExtents, lineColor);
 	}
 
+	else if (mDebugDrawType == DebugDrawType::GroundCircle)
+	{
+		SimpleDraw::AddGroundCircle(slices, radius, minExtents, lineColor);
+	}
+
+	else if (mDebugDrawType == DebugDrawType::GroundPlane)
+	{
+		SimpleDraw::AddGroundPlane(radius, lineColor);
+	}
+
 	SimpleDraw::Render(mCamera);
 }
 
@@ -705,6 +717,18 @@ void GameState::DebugUI()
 		ImGui::DragFloat("Rz", &rz);
 		ImGui::DragInt("Slices", &slices);
 		ImGui::DragInt("Rings", &rings);
+	}
+
+	else if (mDebugDrawType == DebugDrawType::GroundCircle)
+	{
+		ImGui::DragInt("Slices", &slices);
+		ImGui::DragFloat("Radius", &radius);
+		ImGui::DragFloat3("Pos", &minExtents.x);
+	}
+
+	else if (mDebugDrawType == DebugDrawType::GroundPlane)
+	{
+		ImGui::DragFloat("Size", &radius);
 	}
 
 	ImGui::ColorEdit4("Color", &lineColor.r);

@@ -12,7 +12,9 @@ enum class DebugDrawType
 	AABBFilled,
 	Sonic,
 	Oval,
-	OvalFilled
+	OvalFilled,
+	GroundCircle,
+	GroundPlane
 };
 
 class GameState : public SumEngine::AppState

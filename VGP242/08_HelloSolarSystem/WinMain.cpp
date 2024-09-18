@@ -7,7 +7,7 @@ using namespace SumEngine;
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	AppConfig config;
-	config.appname = L"Hello Render Target";
+	config.appname = L"Hello Solar System";
 
 	App& myApp = MainApp();
 	myApp.AddState<GameState>("Cube");
