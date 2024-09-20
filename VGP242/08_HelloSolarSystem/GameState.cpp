@@ -39,7 +39,7 @@ const char* cTextureLocations[] =
 void GameState::Initialize()
 {
 	// Set Cameras
-	mCamera.SetPosition({ 0.0f, 1.0f, -200.0f });
+	mCamera.SetPosition({ 0.0f, 500.0f, -300.0f });
 	mCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
 	mRenderTargetCamera.SetPosition({ 0.0f, 0.0f, -300.0f });
 	mRenderTargetCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
@@ -83,7 +83,7 @@ void GameState::Initialize()
 	mObjects[(int)SolarSystem::Venus].distanceFromSun = 200;
 	mObjects[(int)SolarSystem::Earth].distanceFromSun = 350;
 	mObjects[(int)SolarSystem::Mars].distanceFromSun = 400;
-	mObjects[(int)SolarSystem::Jupiter].distanceFromSun = 590;
+	mObjects[(int)SolarSystem::Jupiter].distanceFromSun = 600;
 	mObjects[(int)SolarSystem::Saturn].distanceFromSun = 700;
 	mObjects[(int)SolarSystem::Uranus].distanceFromSun = 750;
 	mObjects[(int)SolarSystem::Neptune].distanceFromSun = 800;
@@ -92,15 +92,15 @@ void GameState::Initialize()
 
 	// Set Rotations
 	mObjects[(int)SolarSystem::Sun].rotationSpeed = 1;
-	mObjects[(int)SolarSystem::Mercury].rotationSpeed = 20;
-	mObjects[(int)SolarSystem::Venus].rotationSpeed = 25;
+	mObjects[(int)SolarSystem::Mercury].rotationSpeed = 40;
+	mObjects[(int)SolarSystem::Venus].rotationSpeed = 35;
 	mObjects[(int)SolarSystem::Earth].rotationSpeed = 30;
-	mObjects[(int)SolarSystem::Mars].rotationSpeed = 35;
-	mObjects[(int)SolarSystem::Jupiter].rotationSpeed = 40;
-	mObjects[(int)SolarSystem::Saturn].rotationSpeed = 45;
-	mObjects[(int)SolarSystem::Uranus].rotationSpeed = 50;
-	mObjects[(int)SolarSystem::Neptune].rotationSpeed = 55;
-	mObjects[(int)SolarSystem::Pluto].rotationSpeed = 60;
+	mObjects[(int)SolarSystem::Mars].rotationSpeed = 25;
+	mObjects[(int)SolarSystem::Jupiter].rotationSpeed = 20;
+	mObjects[(int)SolarSystem::Saturn].rotationSpeed = 15;
+	mObjects[(int)SolarSystem::Uranus].rotationSpeed = 10;
+	mObjects[(int)SolarSystem::Neptune].rotationSpeed = 8;
+	mObjects[(int)SolarSystem::Pluto].rotationSpeed = 4;
 	mObjects[(int)SolarSystem::Galaxy].rotationSpeed = 0;
 
 	// Set Revolutions
@@ -235,9 +235,12 @@ void GameState::Render()
 	mConstantBuffer.Update(&wvp);
 	mConstantBuffer.BindVS(0);
 
-	mRenderTargetCamera.SetPosition({ 0.0f, 0.0f, renderTargetDistance});
+	mRenderTargetCamera.SetPosition({ 0.0f, -renderTargetDistance, renderTargetDistance});
+	mRenderTargetCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
 	mRenderTarget.BeginRender();
 		mObjects[currentRenderTarget].mMeshBuffer.Render();
+		SimpleDraw::AddGroundCircle(100, 50, Vector3::Zero, Colors::White);
+		SimpleDraw::Render(mRenderTargetCamera);
 	mRenderTarget.EndRender();
 }
 
@@ -254,7 +257,7 @@ void GameState::DebugUI()
 		mCurrentTarget = (SolarSystem)currentRenderTarget;
 	}
 
-	ImGui::DragFloat("RenderTargetDistance", &renderTargetDistance, 1.0f, -200.0f, 0.0f);
+	ImGui::DragFloat("RenderTargetDistance", &renderTargetDistance, 1.0f, -300.0f, 0.0f);
 	ImGui::DragFloat("OrbitSpeed", &mObjects[currentDrawType].orbitSpeed);
 	ImGui::DragFloat("RotationSpeed", &mObjects[currentDrawType].rotationSpeed);
 
