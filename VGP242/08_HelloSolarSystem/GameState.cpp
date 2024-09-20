@@ -104,17 +104,17 @@ void GameState::Initialize()
 	mObjects[(int)SolarSystem::Galaxy].rotationSpeed = 0;
 
 	// Set Revolutions
-	mObjects[(int)SolarSystem::Sun].orbitSpeed = 0;
-	mObjects[(int)SolarSystem::Mercury].orbitSpeed = 20;
-	mObjects[(int)SolarSystem::Venus].orbitSpeed = 25;
-	mObjects[(int)SolarSystem::Earth].orbitSpeed = 30;
-	mObjects[(int)SolarSystem::Mars].orbitSpeed = 35;
-	mObjects[(int)SolarSystem::Jupiter].orbitSpeed = 40;
-	mObjects[(int)SolarSystem::Saturn].orbitSpeed = 45;
-	mObjects[(int)SolarSystem::Uranus].orbitSpeed = 50;
-	mObjects[(int)SolarSystem::Neptune].orbitSpeed = 55;
-	mObjects[(int)SolarSystem::Pluto].orbitSpeed = 60;
-	mObjects[(int)SolarSystem::Galaxy].orbitSpeed = 0;
+	mObjects[(int)SolarSystem::Sun].orbitSpeed = 0.0f;
+	mObjects[(int)SolarSystem::Mercury].orbitSpeed = 2.0f;
+	mObjects[(int)SolarSystem::Venus].orbitSpeed = 2.5f;
+	mObjects[(int)SolarSystem::Earth].orbitSpeed = 3.0f;
+	mObjects[(int)SolarSystem::Mars].orbitSpeed = 3.5f;
+	mObjects[(int)SolarSystem::Jupiter].orbitSpeed = 4.0f;
+	mObjects[(int)SolarSystem::Saturn].orbitSpeed = 4.5f;
+	mObjects[(int)SolarSystem::Uranus].orbitSpeed = 5.0f;
+	mObjects[(int)SolarSystem::Neptune].orbitSpeed = 5.5f;
+	mObjects[(int)SolarSystem::Pluto].orbitSpeed = 6.0f;
+	mObjects[(int)SolarSystem::Galaxy].orbitSpeed = 0.0f;
 
 }
 
@@ -212,7 +212,7 @@ void GameState::Render()
 		mSampler.BindPS(0);
 
 		// constant buffer
-		Matrix4 matWorld = Matrix4::RotationY(object.rotationSpeed * totalTime) * Matrix4::Translation(Vector3::ZAxis * object.distanceFromSun) * Matrix4::RotationY(object.orbitSpeed * totalTime / 10.0f);
+		Matrix4 matWorld = Matrix4::RotationY(object.rotationSpeed * totalTime) * Matrix4::Translation(Vector3::ZAxis * object.distanceFromSun) * Matrix4::RotationY(object.orbitSpeed * totalTime);
 		Matrix4 matView = mCamera.GetViewMatrix();
 		Matrix4 matProj = mCamera.GetProjectionMatrix();
 		Matrix4 matFinal = matWorld * matView * matProj;
