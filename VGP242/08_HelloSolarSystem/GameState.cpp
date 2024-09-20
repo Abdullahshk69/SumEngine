@@ -92,15 +92,15 @@ void GameState::Initialize()
 
 	// Set Rotations
 	mObjects[(int)SolarSystem::Sun].rotationSpeed = 1;
-	mObjects[(int)SolarSystem::Mercury].rotationSpeed = 40;
-	mObjects[(int)SolarSystem::Venus].rotationSpeed = 35;
-	mObjects[(int)SolarSystem::Earth].rotationSpeed = 30;
+	mObjects[(int)SolarSystem::Mercury].rotationSpeed = 10;
+	mObjects[(int)SolarSystem::Venus].rotationSpeed = 15;
+	mObjects[(int)SolarSystem::Earth].rotationSpeed = 20;
 	mObjects[(int)SolarSystem::Mars].rotationSpeed = 25;
-	mObjects[(int)SolarSystem::Jupiter].rotationSpeed = 20;
-	mObjects[(int)SolarSystem::Saturn].rotationSpeed = 15;
-	mObjects[(int)SolarSystem::Uranus].rotationSpeed = 10;
-	mObjects[(int)SolarSystem::Neptune].rotationSpeed = 8;
-	mObjects[(int)SolarSystem::Pluto].rotationSpeed = 4;
+	mObjects[(int)SolarSystem::Jupiter].rotationSpeed = 30;
+	mObjects[(int)SolarSystem::Saturn].rotationSpeed = 35;
+	mObjects[(int)SolarSystem::Uranus].rotationSpeed = 40;
+	mObjects[(int)SolarSystem::Neptune].rotationSpeed = 45;
+	mObjects[(int)SolarSystem::Pluto].rotationSpeed = 50;
 	mObjects[(int)SolarSystem::Galaxy].rotationSpeed = 0;
 
 	// Set Revolutions
