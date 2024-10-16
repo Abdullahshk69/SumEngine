@@ -16,5 +16,7 @@ protected:
 	void UpdateCamera(float deltaTime);
 	SumEngine::Graphics::Camera mCamera;
 	std::vector<SumEngine::Graphics::RenderObject> mPlanets;
+
+	SumEngine::Graphics::DirectionalLight mDirectionalLight;
 	SumEngine::Graphics::StandardEffect mStandardEffect;
 };
