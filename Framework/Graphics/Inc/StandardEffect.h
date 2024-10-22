@@ -11,6 +11,7 @@ namespace SumEngine::Graphics
 {
 	class Camera;
 	class RenderObject;
+	class RenderGroup;
 
 	class StandardEffect final
 	{
@@ -22,6 +23,7 @@ namespace SumEngine::Graphics
 		void End();
 
 		void Render(const RenderObject& renderObject);
+		void Render(const RenderGroup& renderGroup);
 
 		void SetCamera(const Camera& camera);
 		void SetDirectionalLight(const DirectionalLight& directionalLight);
@@ -43,7 +45,7 @@ namespace SumEngine::Graphics
 			int useNormalMap = 1;
 			int useSpecMap = 1;
 			int useBumpMap = 1;
-			float bumpWeight = 1.0f;
+			float bumpWeight = 0.0f;
 			float padding[3] = { 0.0f };
 		};
 

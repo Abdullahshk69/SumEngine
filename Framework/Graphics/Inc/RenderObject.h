@@ -7,6 +7,7 @@
 
 namespace SumEngine::Graphics
 {
+	struct Model;
 
 	class RenderObject
 	{
@@ -21,5 +22,15 @@ namespace SumEngine::Graphics
 		TextureId normalMapId;
 		TextureId specMapId;
 		TextureId bumpMapId;
+	};
+
+	class RenderGroup
+	{
+	public:
+		void Initialize(const Model& model);
+		void Terminate();
+
+		Transform transform;
+		std::vector<RenderObject> renderObjects;
 	};
 }
