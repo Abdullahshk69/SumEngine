@@ -30,6 +30,7 @@ void GameState::Initialize()
 		planet.diffuseMapId = TextureCache::Get()->LoadTexture("memes/AbdullahCloseUp.jpg");
 		planet.normalMapId = TextureCache::Get()->LoadTexture("memes/AbdullahCloseUp_NormalMap.png");
 		planet.specMapId = TextureCache::Get()->LoadTexture("memes/AbdullahCloseUp_Specular.png");
+		planet.bumpMapId = TextureCache::Get()->LoadTexture("memes/AbdullahCloseUp_NormalMap.png");
 		planet.transform.position.x = x;
 		x += 2.0f;
 	}
