@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Material.h"
 #include "MeshBuffer.h"
+#include "ModelCache.h"
 #include "TextureCache.h"
 #include "Transform.h"
-#include "Material.h"
 
 namespace SumEngine::Graphics
 {
@@ -27,9 +28,11 @@ namespace SumEngine::Graphics
 	class RenderGroup
 	{
 	public:
+		void Initialize(const std::filesystem::path& modelFilePath);
 		void Initialize(const Model& model);
 		void Terminate();
 
+		ModelId modelId;
 		Transform transform;
 		std::vector<RenderObject> renderObjects;
 	};

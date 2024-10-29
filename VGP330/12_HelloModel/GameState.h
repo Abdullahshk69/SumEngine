@@ -19,4 +19,6 @@ protected:
 	SumEngine::Graphics::RenderGroup mCharacter;
 	SumEngine::Graphics::DirectionalLight mDirectionalLight;
 	SumEngine::Graphics::StandardEffect mStandardEffect;
+	SumEngine::Graphics::StandardEffect mRenderTargetStandardEffect;
+	SumEngine::Graphics::RenderTarget mRenderTarget;
 };

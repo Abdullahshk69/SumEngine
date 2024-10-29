@@ -14,6 +14,7 @@
 #include "MeshBuilder.h"
 #include "MeshTypes.h"
 #include "Model.h"
+#include "ModelCache.h"
 #include "ModelIO.h"
 #include "PixelShader.h"
 #include "RenderObject.h"
