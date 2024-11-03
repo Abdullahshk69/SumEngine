@@ -29,7 +29,9 @@ void GameState::Initialize()
 	mRenderTargetStandardEffect.SetCamera(mCamera);
 	mRenderTargetStandardEffect.SetDirectionalLight(mDirectionalLight);
 
-	mCharacter.Initialize(L"../../Assets/Models/Ortiz/Ch43_nonPBR.model");
+	mCharacter1.Initialize(L"../../Assets/Models/Ortiz/Ch43_nonPBR.model");
+	mCharacter2.Initialize(L"../../Assets/Models/Vanguard/VanguardByT.Choonyung.model");
+
 	const uint32_t size = 512;
 	mRenderTarget.Initialize(size, size, Texture::Format::RGBA_U8);
 }
@@ -38,7 +40,8 @@ void GameState::Terminate()
 {
 	mRenderTargetStandardEffect.Terminate();
 	mRenderTarget.Terminate();
-	mCharacter.Terminate();
+	mCharacter2.Terminate();
+	mCharacter1.Terminate();
 	mStandardEffect.Terminate();
 }
 
@@ -84,19 +87,28 @@ void GameState::UpdateCamera(float deltaTime)
 	}
 }
 
+bool checkBox = true;
+
 void GameState::Render()
 {
 	mCamera.SetAspectRatio(1.0f);
 	mRenderTarget.BeginRender();
-	mRenderTargetStandardEffect.Begin();
-		mRenderTargetStandardEffect.Render(mCharacter);
-	mRenderTargetStandardEffect.End();
+		mRenderTargetStandardEffect.Begin();
+			if (checkBox)
+			{
+				mRenderTargetStandardEffect.Render(mCharacter1);
+			}
+			else
+			{
+				mRenderTargetStandardEffect.Render(mCharacter2);
+			}
+		mRenderTargetStandardEffect.End();
 	mRenderTarget.EndRender();
 
 	mCamera.SetAspectRatio(0.0f);
 
 	mStandardEffect.Begin();
-	mStandardEffect.Render(mCharacter);
+		mStandardEffect.Render(mCharacter1);
 	mStandardEffect.End();
 
 	SimpleDraw::AddGroundPlane(10.0f, Colors::White);
@@ -117,6 +129,7 @@ void GameState::DebugUI()
 			ImGui::ColorEdit4("Diffuse##Light", &mDirectionalLight.diffuse.r);
 			ImGui::ColorEdit4("Specular##Light", &mDirectionalLight.specular.r);
 		}
+
 		ImGui::Separator();
 		ImGui::Text("RenderTarget");
 		ImGui::Image(
@@ -128,6 +141,7 @@ void GameState::DebugUI()
 			{ 1, 1, 1,1 }
 		);
 
+		ImGui::Checkbox("CheckBox", &checkBox);
 	mStandardEffect.DebugUI();
 	ImGui::End();
 }
