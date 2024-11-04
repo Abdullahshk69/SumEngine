@@ -32,6 +32,9 @@ void GameState::Initialize()
 	mCharacter1.Initialize(L"../../Assets/Models/Ortiz/Ch43_nonPBR.model");
 	mCharacter2.Initialize(L"../../Assets/Models/Vanguard/VanguardByT.Choonyung.model");
 
+	mCharacter1.transform.position = { 1.0f, 0.0f, 0.0f };
+	mCharacter2.transform.position = { -1.0f, 0.0f, 0.0f };
+
 	const uint32_t size = 512;
 	mRenderTarget.Initialize(size, size, Texture::Format::RGBA_U8);
 }
@@ -109,6 +112,7 @@ void GameState::Render()
 
 	mStandardEffect.Begin();
 		mStandardEffect.Render(mCharacter1);
+		mStandardEffect.Render(mCharacter2);
 	mStandardEffect.End();
 
 	SimpleDraw::AddGroundPlane(10.0f, Colors::White);
