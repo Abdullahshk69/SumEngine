@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{4E8E
 		Assets\Shaders\DoColor.fx = Assets\Shaders\DoColor.fx
 		Assets\Shaders\DoTexture.fx = Assets\Shaders\DoTexture.fx
 		Assets\Shaders\DoTransform.fx = Assets\Shaders\DoTransform.fx
+		Assets\Shaders\PostProcessing.fx = Assets\Shaders\PostProcessing.fx
 		Assets\Shaders\Standard.fx = Assets\Shaders\Standard.fx
 	EndProjectSection
 EndProject
@@ -63,6 +64,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModelImporter", "Tools\ModelImporter\ModelImporter.vcxproj", "{145A0904-7138-4B18-A25E-56C20C176BC7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12_HelloModel", "VGP330\12_HelloModel\12_HelloModel.vcxproj", "{87666EB2-6959-470A-B266-E40E258F7DC6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "13_HelloPostProcessing", "VGP330\13_HelloPostProcessing\13_HelloPostProcessing.vcxproj", "{FBD245DC-9D67-49AD-B627-39198DBB5140}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -224,6 +227,14 @@ Global
 		{87666EB2-6959-470A-B266-E40E258F7DC6}.Release|x64.Build.0 = Release|x64
 		{87666EB2-6959-470A-B266-E40E258F7DC6}.Release|x86.ActiveCfg = Release|Win32
 		{87666EB2-6959-470A-B266-E40E258F7DC6}.Release|x86.Build.0 = Release|Win32
+		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Debug|x64.ActiveCfg = Debug|x64
+		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Debug|x64.Build.0 = Debug|x64
+		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Debug|x86.ActiveCfg = Debug|Win32
+		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Debug|x86.Build.0 = Debug|Win32
+		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Release|x64.ActiveCfg = Release|x64
+		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Release|x64.Build.0 = Release|x64
+		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Release|x86.ActiveCfg = Release|Win32
+		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -249,6 +260,7 @@ Global
 		{7242E2C8-DE27-4E97-B538-2F5B480DA572} = {522960CE-8EC7-4173-9E6E-0092D235D1F4}
 		{145A0904-7138-4B18-A25E-56C20C176BC7} = {92D5C83B-290A-40DA-BA5C-B2A6B9500E70}
 		{87666EB2-6959-470A-B266-E40E258F7DC6} = {522960CE-8EC7-4173-9E6E-0092D235D1F4}
+		{FBD245DC-9D67-49AD-B627-39198DBB5140} = {522960CE-8EC7-4173-9E6E-0092D235D1F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE74B6F-6EB1-4809-B285-5C9440857B8D}
