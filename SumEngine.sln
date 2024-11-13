@@ -35,8 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{4E8E
 		Assets\Shaders\DoColor.fx = Assets\Shaders\DoColor.fx
 		Assets\Shaders\DoTexture.fx = Assets\Shaders\DoTexture.fx
 		Assets\Shaders\DoTransform.fx = Assets\Shaders\DoTransform.fx
+		Assets\Shaders\GaussianBlur.fx = Assets\Shaders\GaussianBlur.fx
 		Assets\Shaders\PostProcessing.fx = Assets\Shaders\PostProcessing.fx
 		Assets\Shaders\Standard.fx = Assets\Shaders\Standard.fx
+		Assets\Shaders\Terrain.fx = Assets\Shaders\Terrain.fx
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03_HelloCube", "VGP242\03_HelloCube\03_HelloCube.vcxproj", "{1E46322E-2C85-4B36-B6B4-793EFD5ED6B8}"
@@ -66,6 +68,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12_HelloModel", "VGP330\12_HelloModel\12_HelloModel.vcxproj", "{87666EB2-6959-470A-B266-E40E258F7DC6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "13_HelloPostProcessing", "VGP330\13_HelloPostProcessing\13_HelloPostProcessing.vcxproj", "{FBD245DC-9D67-49AD-B627-39198DBB5140}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "14_HelloGuassianBlur", "VGP330\14_HelloGuassianBlur\14_HelloGuassianBlur.vcxproj", "{A2A2B176-156F-4565-9C65-34142CDD2DF6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "15_HelloTerrain", "VGP330\15_HelloTerrain\15_HelloTerrain.vcxproj", "{A9082268-9917-4709-9769-250D74970CAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -235,6 +241,22 @@ Global
 		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Release|x64.Build.0 = Release|x64
 		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Release|x86.ActiveCfg = Release|Win32
 		{FBD245DC-9D67-49AD-B627-39198DBB5140}.Release|x86.Build.0 = Release|Win32
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6}.Debug|x64.ActiveCfg = Debug|x64
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6}.Debug|x64.Build.0 = Debug|x64
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6}.Debug|x86.ActiveCfg = Debug|Win32
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6}.Debug|x86.Build.0 = Debug|Win32
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6}.Release|x64.ActiveCfg = Release|x64
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6}.Release|x64.Build.0 = Release|x64
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6}.Release|x86.ActiveCfg = Release|Win32
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6}.Release|x86.Build.0 = Release|Win32
+		{A9082268-9917-4709-9769-250D74970CAE}.Debug|x64.ActiveCfg = Debug|x64
+		{A9082268-9917-4709-9769-250D74970CAE}.Debug|x64.Build.0 = Debug|x64
+		{A9082268-9917-4709-9769-250D74970CAE}.Debug|x86.ActiveCfg = Debug|Win32
+		{A9082268-9917-4709-9769-250D74970CAE}.Debug|x86.Build.0 = Debug|Win32
+		{A9082268-9917-4709-9769-250D74970CAE}.Release|x64.ActiveCfg = Release|x64
+		{A9082268-9917-4709-9769-250D74970CAE}.Release|x64.Build.0 = Release|x64
+		{A9082268-9917-4709-9769-250D74970CAE}.Release|x86.ActiveCfg = Release|Win32
+		{A9082268-9917-4709-9769-250D74970CAE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -261,6 +283,8 @@ Global
 		{145A0904-7138-4B18-A25E-56C20C176BC7} = {92D5C83B-290A-40DA-BA5C-B2A6B9500E70}
 		{87666EB2-6959-470A-B266-E40E258F7DC6} = {522960CE-8EC7-4173-9E6E-0092D235D1F4}
 		{FBD245DC-9D67-49AD-B627-39198DBB5140} = {522960CE-8EC7-4173-9E6E-0092D235D1F4}
+		{A2A2B176-156F-4565-9C65-34142CDD2DF6} = {522960CE-8EC7-4173-9E6E-0092D235D1F4}
+		{A9082268-9917-4709-9769-250D74970CAE} = {522960CE-8EC7-4173-9E6E-0092D235D1F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE74B6F-6EB1-4809-B285-5C9440857B8D}
