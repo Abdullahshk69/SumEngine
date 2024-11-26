@@ -35,6 +35,16 @@ void GameState::Initialize()
 	mGround.meshBuffer.Initialize(groundMesh);
 	mGround.diffuseMapId = TextureCache::Get()->LoadTexture("misc/concrete.jpg");
 
+	MeshPX cube = MeshBuilder::CreateCubePX(1.0f);
+	mCube.meshBuffer.Initialize(cube);
+	mCube.transform.position.x = -1.0f;
+	mCube.transform.position.y = 0.0f;
+
+	Mesh sphere = MeshBuilder::CreateSphere(30, 30, 0.5f);
+	mSphere.meshBuffer.Initialize(sphere);
+	mSphere.transform.position.x = 1.0f;
+	mSphere.transform.position.y = 0.5f;
+
 	GraphicsSystem* gs = GraphicsSystem::Get();
 	const uint32_t screenWidth = gs->GetBackBufferWidth();
 	const uint32_t screenHeight = gs->GetBackBufferHeight();
@@ -42,12 +52,13 @@ void GameState::Initialize()
 
 void GameState::Terminate()
 {
+	mSphere.Terminate();
+	mCube.Terminate();
 	mGround.Terminate();
 	mCharacter.Terminate();
 	mShadowEffect.Terminate();
 	mStandardEffect.Terminate();
 }
-
 
 void GameState::Update(float deltaTime)
 {
@@ -97,10 +108,14 @@ void GameState::Render()
 	// Only items that cast shadows
 	mShadowEffect.Begin();
 		mShadowEffect.Render(mCharacter);
+		mShadowEffect.Render(mCube);
+		mShadowEffect.Render(mSphere);
 	mShadowEffect.End();
 	
 	mStandardEffect.Begin();
 		mStandardEffect.Render(mCharacter);
+		mStandardEffect.Render(mCube);
+		mStandardEffect.Render(mSphere);
 		mStandardEffect.Render(mGround);
 	mStandardEffect.End();
 }

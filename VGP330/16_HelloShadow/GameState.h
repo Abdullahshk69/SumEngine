@@ -20,5 +20,7 @@ protected:
 	SumEngine::Graphics::ShadowEffect mShadowEffect;
 	
 	SumEngine::Graphics::RenderGroup mCharacter;
-	SumEngine::Graphics::RenderObject mGround;	
+	SumEngine::Graphics::RenderObject mGround;
+	SumEngine::Graphics::RenderObject mCube;
+	SumEngine::Graphics::RenderObject mSphere;
 };
