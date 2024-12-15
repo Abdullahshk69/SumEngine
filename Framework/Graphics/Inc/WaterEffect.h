@@ -37,6 +37,9 @@ namespace SumEngine::Graphics
 		struct WaterTransform
 		{
 			Math::Matrix4 wvp;
+			Math::Matrix4 world;
+			Math::Vector3 viewPosition;
+			float padding = 0.0f;
 		};
 
 		// Light
@@ -46,14 +49,18 @@ namespace SumEngine::Graphics
 		struct SettingsData
 		{
 			// Add all the settings for the water waves here
-			float strength = 1;
-			float speed = 1;
-			float frequency = 1;
-			float waveTime;
+			float amplitude1 = 0.3f;
+			float amplitude2 = 0.1f;
+			float waveLength1 = 0.2f;
+			float waveLength2 = 0.3f;
+			float speed = 0.2f;
+			float waveTime = 0.0f;
+			float padding[2] = { 0.0f };
 		};
 
 		using TransformBuffer = TypedConstantBuffer<WaterTransform>;
 		using SettingsBuffer = TypedConstantBuffer<SettingsData>;
+		//using LightBuffer = TypedConstantBuffer<DirectionalLight>;
 
 		TransformBuffer mTransformBuffer;
 		SettingsBuffer mSettingsBuffer;
@@ -62,6 +69,7 @@ namespace SumEngine::Graphics
 		PixelShader mPixelShader;
 		Sampler mSampler;
 		SettingsData mSettingsData;
+		//LightBuffer mLightBuffer;
 
 
 		const Camera* mCamera = nullptr;

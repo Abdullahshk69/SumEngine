@@ -60,6 +60,10 @@ VS_OUTPUT VS(VS_INPUT input)
     float3 localPosition = input.position;
     
     VS_OUTPUT output;
+    for (int i = 0; i < 2;i++)
+    {
+        continue;
+    }
     output.position = mul(float4(localPosition, 1.0f), wvp);
     output.worldPosition = mul(float4(localPosition, 1.0f), world);
     output.worldNormal = mul(input.normal, (float3x3)world);

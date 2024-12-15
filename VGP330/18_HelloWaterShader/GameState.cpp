@@ -29,25 +29,23 @@ void GameState::Initialize()
 	MeshPX screenQuad = MeshBuilder::CreateScreenQuad();
 	mScreenQuad.meshBuffer.Initialize(screenQuad);
 
-	Mesh groundMesh = MeshBuilder::CreateGroundPlane(10, 10, 1.0f);
-	mGround.meshBuffer.Initialize(groundMesh);
+	Mesh waterMesh = MeshBuilder::CreateGroundPlane(10, 10, 1.0f);
+	mGround.meshBuffer.Initialize(waterMesh);
 	mGround.diffuseMapId = TextureCache::Get()->LoadTexture("misc/concrete.jpg");
 
 	Mesh water = MeshBuilder::CreateGroundPlane(10, 10, 1.0f);
-	
-	GraphicsSystem* gs = GraphicsSystem::Get();
-	const uint32_t screenWidth = gs->GetBackBufferWidth();
-	const uint32_t screenHeight = gs->GetBackBufferHeight();
-	mRenderTarget.Initialize(screenWidth, screenHeight, Texture::Format::RGBA_U8);
 
+	mWater.meshBuffer.Initialize(water);
+	mWater.diffuseMapId = TextureCache::Get()->LoadTexture("water/watercolor.png");
+	
 	mWaterEffect.Initialize();
 	mWaterEffect.SetCamera(mCamera);
+	mWaterEffect.SetDirectionalLight(mDirectionalLight);
 }
 
 void GameState::Terminate()
 {
 	mWaterEffect.Terminate();
-	mRenderTarget.Terminate();
 	mGround.Terminate();
 	mCharacter.Terminate();
 	mStandardEffect.Terminate();
@@ -100,15 +98,12 @@ bool checkBox = true;
 
 void GameState::Render()
 {
-	mRenderTarget.BeginRender();
-		mStandardEffect.Begin();
-			mStandardEffect.Render(mCharacter);
-			mStandardEffect.Render(mGround);
-		mStandardEffect.End();
-	mRenderTarget.EndRender();
+	mStandardEffect.Begin();
+		mStandardEffect.Render(mCharacter);
+	mStandardEffect.End();
 
 	mWaterEffect.Begin();
-		mWaterEffect.Render(mGround);
+		mWaterEffect.Render(mWater);
 	mWaterEffect.End();
 }
 
@@ -127,19 +122,7 @@ void GameState::DebugUI()
 			ImGui::ColorEdit4("Specular##Light", &mDirectionalLight.specular.r);
 		}
 
-		ImGui::Separator();
-		ImGui::Text("RenderTarget");
-		ImGui::Image(
-			mRenderTarget.GetRawData(),
-			{ 128,128 },
-			{ 0,0 },
-			{ 1,1 },
-			{ 1, 1, 1,1 },
-			{ 1, 1, 1,1 }
-		);
-
-		ImGui::Checkbox("CheckBox", &checkBox);
-	mStandardEffect.DebugUI();
-	mWaterEffect.DebugUI();
+		mStandardEffect.DebugUI();
+		mWaterEffect.DebugUI();
 	ImGui::End();
 }

@@ -22,7 +22,6 @@ protected:
 	
 	SumEngine::Graphics::RenderGroup mCharacter;
 	SumEngine::Graphics::RenderObject mGround;
+	SumEngine::Graphics::RenderObject mWater;
 	SumEngine::Graphics::RenderObject mScreenQuad;
-
-	SumEngine::Graphics::RenderTarget mRenderTarget;
 };

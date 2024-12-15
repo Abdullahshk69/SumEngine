@@ -14,14 +14,17 @@ void WaterEffect::Initialize()
 	std::filesystem::path shaderFile = L"../../Assets/Shaders/WaterWaves.fx";
 	mVertexShader.Initialize<Vertex>(shaderFile);
 	mPixelShader.Initialize(shaderFile);
+
 	mTransformBuffer.Initialize();
 	mSettingsBuffer.Initialize();
+	//mLightBuffer.Initialize();
 	mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
 }
 
 void WaterEffect::Terminate()
 {
 	mSampler.Terminate();
+	//mLightBuffer.Terminate();
 	mSettingsBuffer.Terminate();
 	mTransformBuffer.Terminate();
 	mPixelShader.Terminate();
@@ -32,10 +35,14 @@ void WaterEffect::Begin()
 {
 	mVertexShader.Bind();
 	mPixelShader.Bind();
-	mSampler.BindPS(0);
 
 	mTransformBuffer.BindVS(0);
 	mSettingsBuffer.BindVS(1);
+
+	//mLightBuffer.BindVS(2);
+
+	mSampler.BindVS(0);
+	mSampler.BindPS(0);
 }
 
 void WaterEffect::End()
@@ -50,10 +57,7 @@ void WaterEffect::Update(float deltaTime)
 
 void WaterEffect::Render(const RenderObject& renderObject)
 {
-	SettingsData settingsData;
-	settingsData.strength = mSettingsData.strength;
-	settingsData.speed = mSettingsData.speed;
-	settingsData.frequency = mSettingsData.frequency;
+	ASSERT(mCamera != nullptr, "Water Effect: must have a camera");
 
 	const Math::Matrix4 matWorld = renderObject.transform.GetMatrix4();
 	const Math::Matrix4 matView = mCamera->GetViewMatrix();
@@ -63,7 +67,25 @@ void WaterEffect::Render(const RenderObject& renderObject)
 
 	WaterTransform waterTransform;
 	waterTransform.wvp = Transpose(matFinal);
+	waterTransform.world = Transpose(matWorld);
+	waterTransform.viewPosition = mCamera->GetPosition();
+	mTransformBuffer.Update(waterTransform);
+
+	SettingsData settingsData;
+	settingsData.amplitude1 = mSettingsData.amplitude1;
+	settingsData.amplitude2 = mSettingsData.amplitude2;
+	settingsData.speed = mSettingsData.speed;
+	settingsData.waveLength1 = mSettingsData.waveLength1;
+	settingsData.waveLength2 = mSettingsData.waveLength2;
+	settingsData.waveTime = mSettingsData.waveTime;
+
 	mSettingsBuffer.Update(settingsData);
+	//mLightBuffer.Update(*mDirectionalLight);
+
+	TextureCache* tc = TextureCache::Get();
+	tc->BindPS(renderObject.diffuseMapId, 0);
+
+	renderObject.meshBuffer.Render();
 }
 
 void WaterEffect::SetCamera(const Camera& camera)
@@ -85,8 +107,10 @@ void WaterEffect::DebugUI()
 {
 	if (ImGui::CollapsingHeader("Waves", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-		ImGui::DragFloat("Strength#Waves", &mSettingsData.strength);
-		ImGui::DragFloat("Speed#Waves", &mSettingsData.speed);
-		ImGui::DragFloat("Frequency#Waves", &mSettingsData.frequency);
+		ImGui::DragFloat("Amplitude1##Waves", &mSettingsData.amplitude1, 0.01f, 0.0f, 2.0f);
+		ImGui::DragFloat("Amplitude2##Waves", &mSettingsData.amplitude2, 0.01f, 0.0f, 2.0f);
+		ImGui::DragFloat("WaveLength1##Waves", &mSettingsData.waveLength1, 0.01f, 0.0f, 2.0f);
+		ImGui::DragFloat("WaveLength2##Waves", &mSettingsData.waveLength2, 0.01f, 0.0f, 2.0f);
+		ImGui::DragFloat("Speed##Waves", &mSettingsData.speed, 0.01f, 0.0f, 100.0f);
 	}
 }

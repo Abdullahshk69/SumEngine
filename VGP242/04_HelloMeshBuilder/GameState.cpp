@@ -16,7 +16,9 @@ void GameState::Initialize()
 	mCamera.SetPosition({ 0.0f, 1.0f, -5.0f });
 	mCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
 
-	mMeshBuffer.Initialize<MeshPX>(mesh);
+	MeshPX basketBall = MeshBuilder::CreateSpherePX(30, 30, 1.0f);
+
+	mMeshBuffer.Initialize<MeshPX>(basketBall);
 
 	//mMeshBuffer.Initialize(mVertices.data(), sizeof(Vertex), mVertices.size());
 	mConstantBuffer.Initialize(sizeof(Matrix4));
@@ -26,7 +28,7 @@ void GameState::Initialize()
 	mVertexShader.Initialize<VertexPX>(shaderFile);
 	mPixelShader.Initialize(shaderFile);
 
-	mDiffuseTexture.Initialize("../../Assets/Images/skysphere/sky.jpg");
+	mDiffuseTexture.Initialize("../../Assets/Images/misc/basketball.jpg");
 	mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
 }
 

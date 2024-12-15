@@ -34,7 +34,8 @@ namespace SumEngine::Graphics
 			Math::Matrix4 wvp;
 			Math::Matrix4 world;
 			Math::Vector3 viewPosition;
-			float padding = 0.0f;
+			Math::Vector3 lightDirection;
+			float padding[2] = { 0.0f };
 		};
 
 		struct SettingsData
