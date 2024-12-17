@@ -55,7 +55,7 @@ VS_OUTPUT VS(VS_INPUT input)
     float w1 = 2 / waveLength1;
     float w2 = 2 / waveLength2;
     float w3 = 2 / waveLength3;
-    float phi1 = speed * 2 / waveLength1;
+    float phi1 = speed * 2 / waveLength1;   // faze
     float phi2 = speed * 2 / waveLength2;
     float phi3 = speed * 2 / waveLength3;
     
@@ -63,11 +63,12 @@ VS_OUTPUT VS(VS_INPUT input)
     VS_OUTPUT output;
     output.position = mul(float4(localPosition, 1.0f), wvp);
     
-    float wave1 = amplitude1 * abs(sin(localPosition * w1 + (waveTime * phi1)));
-    float wave2 = amplitude2 * abs(sin(localPosition * -1 * w2 + (waveTime * phi2)));
-    float wave3 = amplitude3 * abs(sin(localPosition * -1 * w2 + (waveTime * phi3)));
+    float wave1 = amplitude1 * abs(sin(localPosition.x * w1 + (waveTime * phi1)));
+    float wave2 = amplitude2 * abs(sin(localPosition.x * w2 + (waveTime * phi2)));
+    float wave3 = amplitude3 * abs(sin(localPosition.x * -1 * w2 + (waveTime * phi3)));
     
     output.position.y += wave1 + wave2;
+    output.position.y += wave3;
     output.texCoord = input.texCoord;
     output.dirToView = normalize(viewPosition - (mul(float4(localPosition, 1.0f), world).xyz));
     output.worldNormal = mul(input.normal, (float3x3) world);
