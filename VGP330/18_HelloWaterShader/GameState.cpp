@@ -37,6 +37,7 @@ void GameState::Initialize()
 
 	mWater.meshBuffer.Initialize(water);
 	mWater.diffuseMapId = TextureCache::Get()->LoadTexture("water/watercolor.png");
+	mWater.normalMapId = TextureCache::Get()->LoadTexture("water/voronoi2.png");
 	
 	mWaterEffect.Initialize();
 	mWaterEffect.SetCamera(mCamera);

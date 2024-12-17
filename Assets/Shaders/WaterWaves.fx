@@ -15,13 +15,16 @@ cbuffer SettingsData : register(b1)
 {
     float amplitude1;
     float amplitude2;
+    float amplitude3;
     float waveLength1;
     float waveLength2;
+    float waveLength3;
     float speed;
     float waveTime;
 }
 
 Texture2D waterTexture : register(t0);
+Texture2D voronoiTexture : register(t1);
 SamplerState textureSampler : register(s0);
 
 struct VS_INPUT
@@ -51,15 +54,18 @@ VS_OUTPUT VS(VS_INPUT input)
     
     float w1 = 2 / waveLength1;
     float w2 = 2 / waveLength2;
+    float w3 = 2 / waveLength3;
     float phi1 = speed * 2 / waveLength1;
     float phi2 = speed * 2 / waveLength2;
+    float phi3 = speed * 2 / waveLength3;
     
     float3 localPosition = input.position;
     VS_OUTPUT output;
     output.position = mul(float4(localPosition, 1.0f), wvp);
     
     float wave1 = amplitude1 * abs(sin(localPosition * w1 + (waveTime * phi1)));
-    float wave2 = amplitude2 * abs(sin(localPosition * w2 + (waveTime * phi2)));
+    float wave2 = amplitude2 * abs(sin(localPosition * -1 * w2 + (waveTime * phi2)));
+    float wave3 = amplitude3 * abs(sin(localPosition * -1 * w2 + (waveTime * phi3)));
     
     output.position.y += wave1 + wave2;
     output.texCoord = input.texCoord;
@@ -72,5 +78,9 @@ VS_OUTPUT VS(VS_INPUT input)
 
 float4 PS(VS_OUTPUT input) : SV_Target
 {
-    return waterTexture.Sample(textureSampler, input.texCoord);
+    float4 finalTexture = waterTexture.Sample(textureSampler, input.texCoord);
+    //float4 voranoi = voronoiTexture.Sample(textureSampler, input.texCoord + sin(waveTime) * input.texCoord);
+    float4 voranoi = voronoiTexture.Sample(textureSampler, input.texCoord + abs(sin(waveTime / 50)) * input.texCoord);
+    finalTexture += voranoi;
+    return finalTexture;
 }

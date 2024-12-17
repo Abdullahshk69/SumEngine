@@ -38,6 +38,7 @@ void WaterEffect::Begin()
 
 	mTransformBuffer.BindVS(0);
 	mSettingsBuffer.BindVS(1);
+	mSettingsBuffer.BindPS(1);
 
 	//mLightBuffer.BindVS(2);
 
@@ -74,9 +75,11 @@ void WaterEffect::Render(const RenderObject& renderObject)
 	SettingsData settingsData;
 	settingsData.amplitude1 = mSettingsData.amplitude1;
 	settingsData.amplitude2 = mSettingsData.amplitude2;
+	settingsData.amplitude3 = mSettingsData.amplitude3;
 	settingsData.speed = mSettingsData.speed;
 	settingsData.waveLength1 = mSettingsData.waveLength1;
 	settingsData.waveLength2 = mSettingsData.waveLength2;
+	settingsData.waveLength3 = mSettingsData.waveLength3;
 	settingsData.waveTime = mSettingsData.waveTime;
 
 	mSettingsBuffer.Update(settingsData);
@@ -84,6 +87,7 @@ void WaterEffect::Render(const RenderObject& renderObject)
 
 	TextureCache* tc = TextureCache::Get();
 	tc->BindPS(renderObject.diffuseMapId, 0);
+	tc->BindPS(renderObject.normalMapId, 1);
 
 	renderObject.meshBuffer.Render();
 }
@@ -107,10 +111,12 @@ void WaterEffect::DebugUI()
 {
 	if (ImGui::CollapsingHeader("Waves", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-		ImGui::DragFloat("Amplitude1##Waves", &mSettingsData.amplitude1, 0.01f, 0.0f, 2.0f);
-		ImGui::DragFloat("Amplitude2##Waves", &mSettingsData.amplitude2, 0.01f, 0.0f, 2.0f);
-		ImGui::DragFloat("WaveLength1##Waves", &mSettingsData.waveLength1, 0.01f, 0.0f, 2.0f);
-		ImGui::DragFloat("WaveLength2##Waves", &mSettingsData.waveLength2, 0.01f, 0.0f, 2.0f);
+		ImGui::DragFloat("Amplitude1##Waves", &mSettingsData.amplitude1, 0.001f, 0.0f, 2.0f);
+		ImGui::DragFloat("Amplitude2##Waves", &mSettingsData.amplitude2, 0.001f, 0.0f, 2.0f);
+		ImGui::DragFloat("Amplitude3##Waves", &mSettingsData.amplitude3, 0.001f, 0.0f, 2.0f);
+		ImGui::DragFloat("WaveLength1##Waves", &mSettingsData.waveLength1, 0.001f, 0.0f, 2.0f);
+		ImGui::DragFloat("WaveLength2##Waves", &mSettingsData.waveLength2, 0.001f, 0.0f, 2.0f);
+		ImGui::DragFloat("WaveLength3##Waves", &mSettingsData.waveLength3, 0.001f, 0.0f, 2.0f);
 		ImGui::DragFloat("Speed##Waves", &mSettingsData.speed, 0.01f, 0.0f, 100.0f);
 	}
 }

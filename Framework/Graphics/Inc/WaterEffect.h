@@ -51,11 +51,13 @@ namespace SumEngine::Graphics
 			// Add all the settings for the water waves here
 			float amplitude1 = 0.3f;
 			float amplitude2 = 0.1f;
+			float amplitude3 = 0.2f;
 			float waveLength1 = 0.2f;
 			float waveLength2 = 0.3f;
+			float waveLength3 = 0.1f;
 			float speed = 0.2f;
 			float waveTime = 0.0f;
-			float padding[2] = { 0.0f };
+			//float padding[2] = { 0.0f };
 		};
 
 		using TransformBuffer = TypedConstantBuffer<WaterTransform>;
