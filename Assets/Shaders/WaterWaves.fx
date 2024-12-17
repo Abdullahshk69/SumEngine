@@ -67,8 +67,10 @@ VS_OUTPUT VS(VS_INPUT input)
     float wave2 = amplitude2 * abs(sin(localPosition.x * w2 + (waveTime * phi2)));
     float wave3 = amplitude3 * abs(sin(localPosition.x * -1 * w2 + (waveTime * phi3)));
     
-    output.position.y += wave1 + wave2;
+    output.position.y += wave1;
+    output.position.y += wave2;
     output.position.y += wave3;
+    
     output.texCoord = input.texCoord;
     output.dirToView = normalize(viewPosition - (mul(float4(localPosition, 1.0f), world).xyz));
     output.worldNormal = mul(input.normal, (float3x3) world);
