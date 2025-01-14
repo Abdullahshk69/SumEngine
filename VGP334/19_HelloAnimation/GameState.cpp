@@ -72,6 +72,7 @@ void GameState::Initialize()
 		.AddPositionKey({ 0.0f, 1.0f, 0.0f}, 3.75f)
 		.AddPositionKey({ 0.0f, 0.5f, 0.0f}, 4.25f)
 		.AddRotationKey(Quaternion::CreateFromAxisAngle(Math::Vector3::XAxis, 359.0f * Math::Constants::DegToRad), 4.25f)
+		.AddScaleKey({ 0.1f, 0.1f, 0.1f }, 4.25f)
 		.Build();
 }
 
