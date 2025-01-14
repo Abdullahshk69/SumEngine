@@ -137,8 +137,10 @@
   <ItemGroup>
     <ClInclude Include="Inc\Animation.h" />
     <ClInclude Include="Inc\AnimationBuilder.h" />
+    <ClInclude Include="Inc\AnimationUtil.h" />
     <ClInclude Include="Inc\BillboardEffect.h" />
     <ClInclude Include="Inc\BlendState.h" />
+    <ClInclude Include="Inc\Bone.h" />
     <ClInclude Include="Inc\Camera.h" />
     <ClInclude Include="Inc\Color.h" />
     <ClInclude Include="Inc\Common.h" />
@@ -163,6 +165,7 @@
     <ClInclude Include="Inc\Sampler.h" />
     <ClInclude Include="Inc\ShadowEffect.h" />
     <ClInclude Include="Inc\SimpleDraw.h" />
+    <ClInclude Include="Inc\Skeleton.h" />
     <ClInclude Include="Inc\StandardEffect.h" />
     <ClInclude Include="Inc\Terrain.h" />
     <ClInclude Include="Inc\TerrainEffect.h" />
@@ -177,6 +180,7 @@
   <ItemGroup>
     <ClCompile Include="Src\Animation.cpp" />
     <ClCompile Include="Src\AnimationBuilder.cpp" />
+    <ClCompile Include="Src\AnimationUtil.cpp" />
     <ClCompile Include="Src\BillboardEffect.cpp" />
     <ClCompile Include="Src\BlendState.cpp" />
     <ClCompile Include="Src\Camera.cpp" />

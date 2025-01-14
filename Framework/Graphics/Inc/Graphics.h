@@ -4,8 +4,10 @@
 
 #include "Animation.h"
 #include "AnimationBuilder.h"
+#include "AnimationUtil.h"
 #include "BillboardEffect.h"
 #include "BlendState.h"
+#include "Bone.h"
 #include "Camera.h"
 #include "Color.h"
 #include "ConstantBuffer.h"
@@ -26,6 +28,7 @@
 #include "RenderObject.h"
 #include "RenderTarget.h"
 #include "Sampler.h"
+#include "Skeleton.h"
 #include "ShadowEffect.h"
 #include "SimpleDraw.h"
 #include "StandardEffect.h"
