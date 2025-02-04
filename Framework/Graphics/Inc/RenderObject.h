@@ -5,6 +5,7 @@
 #include "ModelCache.h"
 #include "TextureCache.h"
 #include "Transform.h"
+#include "Animator.h"
 
 namespace SumEngine::Graphics
 {
@@ -28,12 +29,15 @@ namespace SumEngine::Graphics
 	class RenderGroup
 	{
 	public:
-		void Initialize(const std::filesystem::path& modelFilePath);
-		void Initialize(const Model& model);
+		void Initialize(const std::filesystem::path& modelFilePath, const Animator* animator = nullptr);
+		void Initialize(const Model& model, const Animator* animator = nullptr);
 		void Terminate();
 
 		ModelId modelId;
 		Transform transform;
+		const Skeleton* skeleton = nullptr;
+		const Animator* animator = nullptr;
+
 		std::vector<RenderObject> renderObjects;
 	};
 }

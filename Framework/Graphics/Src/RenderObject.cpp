@@ -10,15 +10,15 @@ void RenderObject::Terminate()
 	meshBuffer.Terminate();
 }
 
-void RenderGroup::Initialize(const std::filesystem::path& modelFilePath)
+void RenderGroup::Initialize(const std::filesystem::path& modelFilePath, const Animator* animator)
 {
 	modelId = ModelCache::Get()->LoadModel(modelFilePath);
 	const Model* model = ModelCache::Get()->GetModel(modelId);
 	ASSERT(model != nullptr, "RenderGroup: model %s did not load", modelFilePath.u8string().c_str());
-	Initialize(*model);
+	Initialize(*model, animator);
 }
 
-void RenderGroup::Initialize(const Model& model)
+void RenderGroup::Initialize(const Model& model, const Animator* animator)
 {
 	auto TryLoadTexture = [](const auto& textureName)->TextureId
 		{
@@ -30,6 +30,8 @@ void RenderGroup::Initialize(const Model& model)
 			return TextureCache::Get()->LoadTexture(textureName, false);
 		};
 
+	this->animator = animator;
+	skeleton = model.skeleton.get();
 	for (const Model::MeshData& meshData : model.meshData)
 	{
 		RenderObject& renderObject = renderObjects.emplace_back();

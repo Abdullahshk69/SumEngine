@@ -6,6 +6,7 @@ using namespace SumEngine;
 using namespace SumEngine::Core;
 using namespace SumEngine::Graphics;
 using namespace SumEngine::Input;
+using namespace SumEngine::Physics;
 
 void App::Run(const AppConfig& config)
 {
@@ -26,6 +27,9 @@ void App::Run(const AppConfig& config)
 	SimpleDraw::StaticInitialize(config.maxDrawLines);
 	TextureCache::StaticInitialize("../../Assets/Images/");
 	ModelCache::StaticInitialize();
+
+	PhysicsWorld::Settings settings;
+	PhysicsWorld::StaticInitialize(settings);
 
 	// start state
 	ASSERT(mCurrentState != nullptr, "App: no current state available");
@@ -61,6 +65,7 @@ void App::Run(const AppConfig& config)
 #endif
 		{
 			mCurrentState->Update(deltaTime);
+			PhysicsWorld::Get()->Update(deltaTime);
 		}
 
 		// This is where we send information from cpu to gpu
@@ -76,6 +81,7 @@ void App::Run(const AppConfig& config)
 	mCurrentState->Terminate();
 
 	// terminate singletons
+	PhysicsWorld::StaticTerminate();
 	ModelCache::StaticTerminate();
 	TextureCache::StaticTerminate();
 	SimpleDraw::StaticTerminate();
