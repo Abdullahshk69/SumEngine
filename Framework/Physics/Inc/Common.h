@@ -13,6 +13,8 @@
 #include <Bullet/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h>
 #include <Bullet/BulletSoftBody/btSoftBodySolvers.h>
 
+#define USE_SOFT_BODY
+
 // helper function
 template<class T>
 inline void SafeDelete(T*& ptr)
@@ -51,7 +53,7 @@ inline SumEngine::Math::Quaternion ToQuaternion(const btQuaternion& q)
 	};
 }
 
-inline SumEngine::Color TOColor(const btVector3& c)
+inline SumEngine::Color ToColor(const btVector3& c)
 {
 	return {
 		static_cast<float>(c.getX()),

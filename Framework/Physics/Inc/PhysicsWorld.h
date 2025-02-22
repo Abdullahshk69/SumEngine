@@ -1,5 +1,7 @@
 #pragma once
 
+#include "PhysicsDebugDraw.h"
+
 namespace SumEngine::Physics
 {
 	class PhysicsObject;
@@ -39,10 +41,21 @@ namespace SumEngine::Physics
 		btBroadphaseInterface* mInterface = nullptr;
 		btCollisionDispatcher* mDispatcher = nullptr;
 		btDefaultCollisionConfiguration* mCollisionConfiguration = nullptr;
-		btDiscreteDynamicsWorld* mDynamicsWorld = nullptr;
 		btSequentialImpulseConstraintSolver* mSolver = nullptr;
 
 		using PhysicsObjects = std::vector<PhysicsObject*>;
 		PhysicsObjects mPhysicsObjects;
+
+		PhysicsDebugDraw mPhysicsDebugDraw;
+		bool mDebugDraw = false;
+
+		friend class SoftBody;
+#ifdef USE_SOFT_BODY
+		btSoftRigidDynamicsWorld* mDynamicsWorld = nullptr;
+		btSoftRigidDynamicsWorld* GetSoftBodyWorldInfo() { return mDynamicsWorld; }
+#else
+		btDiscreteDynamicsWorld* mDynamicsWorld = nullptr;
+		btSoftBodyWorldInfo* GetSoftBodyWorldInfo() { return nullptr; }
+#endif
 	};
 }

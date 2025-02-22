@@ -28,12 +28,8 @@ protected:
 	SumEngine::Physics::CollisionShape mGroundShape;
 	SumEngine::Physics::RigidBody mGroundRB;
 
-	struct BoxData
-	{
-		SumEngine::Graphics::RenderObject box;
-		SumEngine::Physics::CollisionShape boxShape;
-		SumEngine::Physics::RigidBody boxRB;
-	};
-	using Boxes = std::vector<BoxData>;
-	Boxes mBoxes;
+	// cloth info
+	SumEngine::Graphics::RenderObject mCloth;
+	SumEngine::Graphics::Mesh mClothMesh;
+	SumEngine::Physics::SoftBody mClothSoftBody;
 };

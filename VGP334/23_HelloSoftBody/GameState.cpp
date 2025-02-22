@@ -38,47 +38,26 @@ void GameState::Initialize()
 	mGroundShape.InitializeHull({ 5.0f, 0.5f, 5.0f }, { 0.0f, -0.5f, 0.0f });
 	mGroundRB.Initialize(mGround.transform, mGroundShape);
 
-	Mesh boxShape = MeshBuilder::CreateCube(1.0f);
-	TextureId boxTexture = TextureCache::Get()->LoadTexture(L"sprites/yellow.jpg");
-
-	float yOffset = 4.0f;
-	float xOffset = 0.0f;
-	int rowCount = 1;
-	int boxIndex = 0;
-	mBoxes.resize(10);
-	while (boxIndex < 10)
+	int rows = 10;
+	int cols = 10;
+	mClothMesh = MeshBuilder::CreateGroundPlane(rows, cols, 1.0f);
+	for (Vertex& v : mClothMesh.vertices)
 	{
-		xOffset = -((static_cast<float>(rowCount) - 1.0f) * 0.5f);
-		for (int r = 0; r < rowCount; ++r)
-		{
-			BoxData& newBox = mBoxes[boxIndex];
-			newBox.box.meshBuffer.Initialize(boxShape);
-			newBox.box.diffuseMapId = boxTexture;
-			newBox.box.transform.position.x = xOffset;
-			newBox.box.transform.position.y = yOffset;
-			newBox.box.transform.position.z = 4.0f;
-			newBox.boxShape.InitializeBox({ 0.5f, 0.5f, 0.5f });
-			xOffset += 1.0f;
-			++boxIndex;
-		}
-		yOffset -= 1.0f;
-		rowCount += 1;
+		v.position.y = 10.0f;
 	}
+	uint32_t lastVertex = mClothMesh.vertices.size() - 1;
+	uint32_t lastVertexOS = lastVertex - cols;	// OS -> Other Side
+	mClothSoftBody.Initialize(mClothMesh, 1.0f, { lastVertex, lastVertexOS });
 
-	for (BoxData& box : mBoxes)
-	{
-		box.boxRB.Initialize(box.box.transform, box.boxShape, 1.0f);
-	}
+	mCloth.meshBuffer.Initialize(nullptr, sizeof(Vertex), mClothMesh.vertices.size(),
+		mClothMesh.indices.data(), mClothMesh.indices.size());
+	mCloth.diffuseMapId = TextureCache::Get()->LoadTexture(L"sprites/splashscreen.bmp");
 }
 
 void GameState::Terminate()
 {
-	for (BoxData& box : mBoxes)
-	{
-		box.boxRB.Terminate();
-		box.boxShape.Terminate();
-	}
-
+	mCloth.Terminate();
+	mClothSoftBody.Terminate();
 	mGroundRB.Terminate();
 	mGroundShape.Terminate();
 	mBallRB.Terminate();
@@ -145,13 +124,11 @@ bool checkBox = true;
 
 void GameState::Render()
 {
+	mCloth.meshBuffer.Update(mClothMesh.vertices.data(), mClothMesh.vertices.size());
 	mStandardEffect.Begin();
-	mStandardEffect.Render(mGround);
-	mStandardEffect.Render(mBall);
-	for (BoxData& box : mBoxes)
-	{
-		mStandardEffect.Render(box.box);
-	}
+		mStandardEffect.Render(mGround);
+		mStandardEffect.Render(mBall);
+		mStandardEffect.Render(mCloth);
 	mStandardEffect.End();
 }
 

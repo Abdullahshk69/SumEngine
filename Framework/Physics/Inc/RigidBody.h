@@ -12,11 +12,14 @@ namespace SumEngine::Physics
 		RigidBody() = default;
 		~RigidBody() override;
 
-		void Initialize(SumEngine::Graphics::Transform& graphicsTransform, const CollisionShape& shape, float mass = 0.0f);
+		void Initialize(SumEngine::Graphics::Transform& graphicsTransform, const CollisionShape& shape, float mass = 0.0f, bool addToWorld = true);
 		void Terminate();
 
 		void SetPosition(const SumEngine::Math::Vector3& position);
 		void SetVelocity(const SumEngine::Math::Vector3& velocity);
+
+		void Activate();
+		void Deactivate();
 
 		bool IsDynamic() const;
 

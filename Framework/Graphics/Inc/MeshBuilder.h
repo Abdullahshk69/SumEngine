@@ -8,6 +8,7 @@ namespace SumEngine::Graphics
 	{
 	public:
 		// Cube
+		static Mesh CreateCube(float size);
 		static MeshPC CreateCubePC(float size);
 		static MeshPX CreateCubePX(float size);
 
