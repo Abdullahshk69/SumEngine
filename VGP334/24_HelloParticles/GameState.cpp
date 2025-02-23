@@ -13,8 +13,24 @@ void GameState::Initialize()
 	mCamera.SetLookAt({ 0.0f, 1.0f, 0.0f });
 
 	mParticleSystemEffect.Initialize();
+	mParticleSystemEffect.SetCamera(mCamera);
 
 	ParticleSystemInfo info;
+	info.textureId = TextureCache::Get()->LoadTexture("sprites/explosion.png");
+	int maxParticles = 100;
+	info.particlesPerEmit = { 1, 4 };
+	info.delay = 1.0f;
+	info.lifeTime = FLT_MAX;
+	info.timeBetweenEmit = { 0.2f, 0.4f };
+	info.spawnAngle = { -30.0f, 30.0f };
+	info.spawnSpeed = { 1.0f, 3.0f };
+	info.spawnLifeTime = { 0.5f, 2.0f };
+	info.spawnDirection = Math::Vector3::YAxis;
+	info.spawnPosition = Math::Vector3::Zero;
+	info.startScale = { Math::Vector3::One, Math::Vector3::One };
+	info.endScale = { Math::Vector3::One, Math::Vector3::One };
+	info.startColor = { Colors::White, Colors::White };
+	info.endColor = { Colors::White, Colors::White };
 	mParticleSystem.Initialize(info);
 }
 
@@ -82,5 +98,7 @@ void GameState::DebugUI()
 	mParticleSystemEffect.DebugUI();
 	PhysicsWorld::Get()->DebugUI();
 	ImGui::End();
+
+	SimpleDraw::AddGroundPlane(10.0f, Colors::White);
 	SimpleDraw::Render(mCamera);
 }

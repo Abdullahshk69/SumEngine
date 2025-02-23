@@ -54,6 +54,7 @@ void ParticleSystemEffect::Render(const Transform& transform, const Color& color
 {
 	ASSERT(mTextureId != 0, "ParticleSystemEffect: must have a texture id");
 	TextureCache::Get()->BindPS(mTextureId, 0);
+
 	const Math::Vector3 localPos = Math::TransformCoord(transform.position, mCamera->GetViewMatrix());
 	const Math::Matrix4 matLocalTrans = Math::Matrix4::Translation(localPos);
 	const Math::Matrix4 matScale = Math::Matrix4::Scaling(transform.scale);

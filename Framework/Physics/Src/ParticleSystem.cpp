@@ -89,9 +89,9 @@ void ParticleSystem::DebugUI()
 		ImGui::DragFloat3("EndScaleMin", &mInfo.endScale.min.x);
 		ImGui::DragFloat3("EndScaleMax", &mInfo.endScale.max.x);
 		ImGui::ColorEdit4("StartColorMin", &mInfo.startColor.min.r);
-		ImGui::ColorEdit4("StartColorMin", &mInfo.startColor.min.r);
+		ImGui::ColorEdit4("StartColorMax", &mInfo.startColor.max.r);
 		ImGui::ColorEdit4("EndColorMin", &mInfo.endColor.min.r);
-		ImGui::ColorEdit4("EndColorMin", &mInfo.endColor.min.r);
+		ImGui::ColorEdit4("EndColorMax", &mInfo.endColor.max.r);
 	}
 }
 
@@ -117,7 +117,7 @@ void ParticleSystem::Render(Graphics::ParticleSystemEffect& effect)
 	{
 		return;
 	}
-
+	effect.SetTextureID(mInfo.textureId);
 	for (auto& particle : mParticles)
 	{
 		if (particle->IsActive())
@@ -134,7 +134,7 @@ void ParticleSystem::SpawnSingleParticle()
 
 	const bool isUp = (abs(Math::Dot(mInfo.spawnDirection, Math::Vector3::YAxis))) > 0.9999f;
 	Math::Vector3 r = (isUp) ? Math::Vector3::XAxis : Math::Normalize(Math::Cross(Math::Vector3::YAxis, mInfo.spawnDirection));
-	Math::Vector3 u = (isUp) ? Math::Vector3::XAxis : Math::Normalize(Math::Cross(mInfo.spawnDirection, r));
+	Math::Vector3 u = (isUp) ? Math::Vector3::ZAxis : Math::Normalize(Math::Cross(mInfo.spawnDirection, r));
 	
 	float rotAngle = mInfo.spawnAngle.GetRandom() * Math::Constants::DegToRad;
 	Math::Matrix4 matRotRight = Math::Matrix4::RotationAxis(r, rotAngle);
