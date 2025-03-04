@@ -47,6 +47,11 @@ void RigidBody::SetVelocity(const SumEngine::Math::Vector3& velocity)
 	mRigidBody->setLinearVelocity(TobtVector3(velocity));
 }
 
+const Math::Vector3 SumEngine::Physics::RigidBody::GetVelocity() const
+{
+	return ToVector3(mRigidBody->getLinearVelocity());
+}
+
 void RigidBody::Activate()
 {
 	PhysicsWorld::Get()->Register(this);

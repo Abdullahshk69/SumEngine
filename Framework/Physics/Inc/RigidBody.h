@@ -17,6 +17,7 @@ namespace SumEngine::Physics
 
 		void SetPosition(const SumEngine::Math::Vector3& position);
 		void SetVelocity(const SumEngine::Math::Vector3& velocity);
+		const Math::Vector3 GetVelocity() const;
 
 		void Activate();
 		void Deactivate();
