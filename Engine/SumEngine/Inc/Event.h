@@ -39,6 +39,7 @@ namespace SumEngine
 	{
 	public:
 		AnimationKeyEvent() : Event(EventType::AnimationKey) {}
+		AnimationKeyEvent(int index) : Event(EventType::AnimationKey), mIndex(index) {}
 		int GetIndex() const { return mIndex; }
 		void SetIndex(int index) { mIndex = index; }
 
