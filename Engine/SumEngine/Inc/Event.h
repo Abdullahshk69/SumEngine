@@ -6,7 +6,8 @@ namespace SumEngine
 	{
 		None,
 		SpacePressed,
-		MKeyPressed
+		MKeyPressed,
+		AnimationKey
 	};
 
 	class Event
@@ -32,5 +33,16 @@ namespace SumEngine
 	{
 	public:
 		MKeyPressedEvent() : Event(EventType::MKeyPressed) {}
+	};
+
+	class AnimationKeyEvent : public Event
+	{
+	public:
+		AnimationKeyEvent() : Event(EventType::AnimationKey) {}
+		int GetIndex() const { return mIndex; }
+		void SetIndex(int index) { mIndex = index; }
+
+	private:
+		int mIndex = 0;
 	};
 }

@@ -1,11 +1,33 @@
+Models:
 -scale 0.01 ../../Assets/Models/Akai/akai_e_espiritu.fbx ../../Assets/Models/Akai/akai_e_espiritu.model
 -scale 0.01 ../../Assets/Models/Vanguard/VanguardByT.Choonyung.fbx ../../Assets/Models/Vanguard/VanguardByT.Choonyung.model
-
 -scale 0.01 ../../Assets/Models/Ortiz/Ch43_nonPBR.fbx ../../Assets/Models/Ortiz/Ch43_nonPBR.model
 
+Animations:
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/ThrillerPart3.fbx ../../Assets/Models/Ortiz/ThrillerPart3.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Taunt.fbx ../../Assets/Models/Ortiz/Taunt.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/RumbaDancing.fbx ../../Assets/Models/Ortiz/RumbaDancing.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/SittingClap.fbx ../../Assets/Models/Ortiz/SittingClap.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/HeaderSoccerball.fbx ../../Assets/Models/Ortiz/HeaderSoccerball.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Praying.fbx ../../Assets/Models/Ortiz/Praying.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/JumpingDown_1.fbx ../../Assets/Models/Ortiz/JumpingDown_1.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Standing_1.fbx ../../Assets/Models/Ortiz/Standing_1.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Falling_1.fbx ../../Assets/Models/Ortiz/Falling_1.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/FallingFlatImpact.fbx ../../Assets/Models/Ortiz/FallingFlatImpact.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/BicycleCrunch.fbx ../../Assets/Models/Ortiz/BicycleCrunch.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/StandingReactDeathForward.fbx ../../Assets/Models/Ortiz/StandingReactDeathForward.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/HeadHit_1.fbx ../../Assets/Models/Ortiz/HeadHit_1.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/HeadHit_2.fbx ../../Assets/Models/Ortiz/HeadHit_2.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/HeadHit_3.fbx ../../Assets/Models/Ortiz/HeadHit_3.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/PunchingBag.fbx ../../Assets/Models/Ortiz/PunchingBag.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Swinging.fbx ../../Assets/Models/Ortiz/Swinging.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/HurricaneKick.fbx ../../Assets/Models/Ortiz/HurricaneKick.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/BodyBlock.fbx ../../Assets/Models/Ortiz/BodyBlock.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/CenterBlock_1.fbx ../../Assets/Models/Ortiz/CenterBlock_1.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/CenterBlock_2.fbx ../../Assets/Models/Ortiz/CenterBlock_2.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Chapa-Giratoria.fbx ../../Assets/Models/Ortiz/Chapa-Giratoria.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/DropKick.fbx ../../Assets/Models/Ortiz/DropKick.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/FlyingKneePunchCombo.fbx ../../Assets/Models/Ortiz/FlyingKneePunchCombo.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/JumpAttack.fbx ../../Assets/Models/Ortiz/JumpAttack.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Martelo2.fbx ../../Assets/Models/Ortiz/Martelo2.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/StandingUp.fbx ../../Assets/Models/Ortiz/StandingUp.model

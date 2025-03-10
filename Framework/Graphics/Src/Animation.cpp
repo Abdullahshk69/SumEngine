@@ -42,6 +42,17 @@ void Animation::PlayEvent(float prevTime, float curTime)
 	}
 }
 
+void Animation::PlayParameterEvent(float prevTime, float curTime, const Event& key)
+{
+	for (uint32_t i = 0; i < mEventParameterKeys.size(); ++i)
+	{
+		if (mEventParameterKeys[i].time > prevTime && mEventParameterKeys[i].time <= curTime)
+		{
+			mEventParameterKeys[i].key(key);
+		}
+	}
+}
+
 Math::Vector3 Animation::GetPosition(float time) const
 {
 	if (mPositionKeys.empty())

@@ -42,12 +42,20 @@ AnimationBuilder& SumEngine::Graphics::AnimationBuilder::AddEventKey(AnimationCa
 	return *this;
 }
 
+AnimationBuilder& SumEngine::Graphics::AnimationBuilder::AddParameterEventKey(AnimationParameterCallback cb, float time)
+{
+	PushKey(mWorkingCopy.mEventParameterKeys, cb, time);
+	mWorkingCopy.mDuration = Math::Max(mWorkingCopy.mDuration, time);
+	return *this;
+}
+
 Animation AnimationBuilder::Build()
 {
 	ASSERT(!mWorkingCopy.mPositionKeys.empty()
 		|| !mWorkingCopy.mRotationKeys.empty()
 		|| !mWorkingCopy.mScaleKeys.empty()
-		|| !mWorkingCopy.mEventKeys.empty(),
+		|| !mWorkingCopy.mEventKeys.empty()
+		|| !mWorkingCopy.mEventParameterKeys.empty(),
 		"AnimationBuilder: no animation keys are present");
 	return std::move(mWorkingCopy);
 }

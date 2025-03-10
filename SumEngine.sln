@@ -108,6 +108,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTKAudio_Desktop_2022
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "26_HelloProceduralAnimation", "VGP334\26_HelloProceduralAnimation\26_HelloProceduralAnimation.vcxproj", "{B73ABB68-93D1-483C-9BB7-81DF1BC78381}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "27_HelloAnimationFinal", "VGP334\27_HelloAnimationFinal\27_HelloAnimationFinal.vcxproj", "{B9ECFAEA-F372-469A-B449-1CB7825F76F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -412,6 +414,14 @@ Global
 		{B73ABB68-93D1-483C-9BB7-81DF1BC78381}.Release|x64.Build.0 = Release|x64
 		{B73ABB68-93D1-483C-9BB7-81DF1BC78381}.Release|x86.ActiveCfg = Release|Win32
 		{B73ABB68-93D1-483C-9BB7-81DF1BC78381}.Release|x86.Build.0 = Release|Win32
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5}.Debug|x64.ActiveCfg = Debug|x64
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5}.Debug|x64.Build.0 = Debug|x64
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5}.Debug|x86.ActiveCfg = Debug|Win32
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5}.Debug|x86.Build.0 = Debug|Win32
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5}.Release|x64.ActiveCfg = Release|x64
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5}.Release|x64.Build.0 = Release|x64
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5}.Release|x86.ActiveCfg = Release|Win32
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -455,6 +465,7 @@ Global
 		{91B3EC27-3AF5-4D1A-B54F-0E8810C43623} = {91E69A07-D96C-491D-8D68-D855296E3D38}
 		{4F150A30-CECB-49D1-8283-6A3F57438CF5} = {9B740904-0C02-4FC2-8E02-A3D382C43E73}
 		{B73ABB68-93D1-483C-9BB7-81DF1BC78381} = {1A71B870-E8B5-4555-B804-4294DA109BB3}
+		{B9ECFAEA-F372-469A-B449-1CB7825F76F5} = {1A71B870-E8B5-4555-B804-4294DA109BB3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE74B6F-6EB1-4809-B285-5C9440857B8D}

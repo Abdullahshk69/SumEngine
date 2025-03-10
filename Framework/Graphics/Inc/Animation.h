@@ -12,6 +12,7 @@ namespace SumEngine::Graphics
 		float GetDuration() const;
 
 		void PlayEvent(float prevTime, float curTime);
+		void PlayParameterEvent(float prevTime, float curTime, const Event& key);
 
 	private:
 		Math::Vector3 GetPosition(float time) const;
@@ -25,6 +26,7 @@ namespace SumEngine::Graphics
 		RotationKeys mRotationKeys;
 		ScaleKeys mScaleKeys;
 		EventKeys mEventKeys;
+		EventParameterKeys mEventParameterKeys;
 
 		float mDuration;
 	};
