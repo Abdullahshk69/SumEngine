@@ -84,7 +84,7 @@ Quaternion Quaternion::CreateFromYawPitchRoll(float yaw, float pitch, float roll
 	const float sy = sin(yaw * 0.5f);
 	const float cp = cos(pitch * 0.5f);
 	const float sp = sin(pitch * 0.5f);
-	const float cr = sin(roll * 0.5f);
+	const float cr = cos(roll * 0.5f);
 	const float sr = sin(roll * 0.5f);
 
 	return {

@@ -77,12 +77,13 @@ void SoundEffectManager::Clear()
 	mSoundEffects.clear();
 }
 
-void SoundEffectManager::Play(SoundId id, bool loop)
+void SoundEffectManager::Play(SoundId id, float volume, bool loop)
 {
 	auto iter = mSoundEffects.find(id);
 	if (iter != mSoundEffects.end())
 	{
 		iter->second->instance->Stop();
+		iter->second->instance->SetVolume(volume);
 		iter->second->instance->Play();
 	}
 }

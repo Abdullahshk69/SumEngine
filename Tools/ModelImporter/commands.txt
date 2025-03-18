@@ -2,8 +2,10 @@ Models:
 -scale 0.01 ../../Assets/Models/Akai/akai_e_espiritu.fbx ../../Assets/Models/Akai/akai_e_espiritu.model
 -scale 0.01 ../../Assets/Models/Vanguard/VanguardByT.Choonyung.fbx ../../Assets/Models/Vanguard/VanguardByT.Choonyung.model
 -scale 0.01 ../../Assets/Models/Ortiz/Ch43_nonPBR.fbx ../../Assets/Models/Ortiz/Ch43_nonPBR.model
+-scale 0.01 ../../Assets/Models/SmokedFish/SmokedFish.fbx ../../Assets/Models/SmokedFish/SmokedFish.model
 
 Animations:
+Ortiz:
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/ThrillerPart3.fbx ../../Assets/Models/Ortiz/ThrillerPart3.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Taunt.fbx ../../Assets/Models/Ortiz/Taunt.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/RumbaDancing.fbx ../../Assets/Models/Ortiz/RumbaDancing.model
@@ -31,3 +33,24 @@ Animations:
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/JumpAttack.fbx ../../Assets/Models/Ortiz/JumpAttack.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/Martelo2.fbx ../../Assets/Models/Ortiz/Martelo2.model
 -scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/StandingUp.fbx ../../Assets/Models/Ortiz/StandingUp.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/FightIdle.fbx ../../Assets/Models/Ortiz/FightIdle.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/MutantPunch.fbx ../../Assets/Models/Ortiz/MutantPunch.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/StandingMeleeAttackKick.fbx ../../Assets/Models/Ortiz/StandingMeleeAttackKick.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Ortiz/HipHopDancing.fbx ../../Assets/Models/Ortiz/HipHopDancing.model
+
+Vanguard:
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/Reaction.fbx ../../Assets/Models/Vanguard/Reaction.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/Defeated.fbx ../../Assets/Models/Vanguard/Defeated.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/DodgingRight.fbx ../../Assets/Models/Vanguard/DodgingRight.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/Dying.fbx ../../Assets/Models/Vanguard/Dying.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/HipHopDancing.fbx ../../Assets/Models/Vanguard/HipHopDancing.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/StrokeShakingHead.fbx ../../Assets/Models/Vanguard/StrokeShakingHead.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/BrutalAssassination.fbx ../../Assets/Models/Vanguard/BrutalAssassination.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/MutantPunch.fbx ../../Assets/Models/Vanguard/MutantPunch.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/Boxing.fbx ../../Assets/Models/Vanguard/Boxing.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/FlyingKick.fbx ../../Assets/Models/Vanguard/FlyingKick.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/HookPunch.fbx ../../Assets/Models/Vanguard/HookPunch.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/HurricaneKick.fbx ../../Assets/Models/Vanguard/HurricaneKick.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/Martelo2.fbx ../../Assets/Models/Vanguard/Martelo2.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/Punching.fbx ../../Assets/Models/Vanguard/Punching.model
+-scale 0.01 -animOnly 1 ../../Assets/Models/Vanguard/Idle.fbx ../../Assets/Models/Vanguard/Idle.model
