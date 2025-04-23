@@ -13,7 +13,6 @@ void GameState::Initialize()
 
 	GameObject* transformGO = mGameWorld.CreateGameObject("Transform");
 	TransformComponent* transformComponent = transformGO->AddComponent<TransformComponent>();
-	transformGO->Initialize();
 
 	GameObject* cameraGO = mGameWorld.CreateGameObject("Camera");
 	CameraComponent* cameraComponent = cameraGO->AddComponent<CameraComponent>();
