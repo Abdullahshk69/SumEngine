@@ -9,6 +9,8 @@ namespace SumEngine
 		Camera,			// contains the camera for viewing
 		FPSCamera,		// move the camera with fps controls
 		Mesh,			// adds a mesh shape to the game object
+		Model,			// adds a model to the game object
+		Animator,		// adds an animation controller to the game object
 		Count			// last value, chain ids in custom components
 	};
 

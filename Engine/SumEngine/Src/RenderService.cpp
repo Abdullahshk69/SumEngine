@@ -4,6 +4,7 @@
 #include "CameraService.h"
 #include "RenderObjectComponent.h"
 #include "TransformComponent.h"
+#include "AnimatorComponent.h"
 
 #include "GameWorld.h"
 
@@ -12,11 +13,6 @@ using namespace SumEngine;
 void RenderService::Initialize()
 {
 	mCameraService = GetWorld().GetService<CameraService>();
-
-	mDirectionalLight.direction = Math::Normalize({ 1.0f, -1.0f, 1.0f });
-	mDirectionalLight.ambient = { 0.3f, 0.3f, 0.3f, 1.0f };
-	mDirectionalLight.diffuse = { 0.7f, 0.7f, 0.7f, 1.0f };
-	mDirectionalLight.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
 
 	std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
 	mStandardEffect.Initialize(shaderFile);
@@ -30,6 +26,7 @@ void RenderService::Initialize()
 
 void RenderService::Terminate()
 {
+	mShadowEffect.Terminate();
 	mStandardEffect.Terminate();
 }
 
@@ -98,6 +95,13 @@ void RenderService::Register(const RenderObjectComponent* renderObjectComponent)
 		});
 	if (iter == mRenderEntries.end())
 	{
+		const Graphics::Animator* animator = nullptr;
+		const AnimatorComponent* animatorComponent = renderObjectComponent->GetOwner().GetComponent<AnimatorComponent>();
+		if (animatorComponent != nullptr)
+		{
+			animator = &animatorComponent->GetAnimator();
+		}
+
 		Entry& entry = mRenderEntries.emplace_back();
 		entry.renderComponent = renderObjectComponent;
 		entry.transformComponent = renderObjectComponent->GetOwner().GetComponent<TransformComponent>();
@@ -120,4 +124,47 @@ void RenderService::Unregister(const RenderObjectComponent* renderObjectComponen
 		iter->renderGroup.Terminate();
 		mRenderEntries.erase(iter);
 	}
+}
+
+void RenderService::Deserialize(const rapidjson::Value& value)
+{
+	// Default values
+	mDirectionalLight.direction = { 1.0f, -1.0f, 1.0f };
+	mDirectionalLight.ambient = { 0.3f, 0.3f, 0.3f, 1.0f };
+	mDirectionalLight.diffuse = { 0.7f, 0.7f, 0.7f, 1.0f };
+	mDirectionalLight.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
+
+	// Override values
+	if (value.HasMember("Direction"))
+	{
+		auto dir = value["Direction"].GetArray();
+		mDirectionalLight.direction.x = dir[0].GetFloat();
+		mDirectionalLight.direction.y = dir[1].GetFloat();
+		mDirectionalLight.direction.z = dir[2].GetFloat();
+	}
+	if (value.HasMember("Ambient"))
+	{
+		auto color = value["Ambient"].GetArray();
+		mDirectionalLight.ambient.r = color[0].GetFloat();
+		mDirectionalLight.ambient.g = color[1].GetFloat();
+		mDirectionalLight.ambient.b = color[2].GetFloat();
+		mDirectionalLight.ambient.a = color[3].GetFloat();
+	}
+	if (value.HasMember("Diffuse"))
+	{
+		auto color = value["Diffuse"].GetArray();
+		mDirectionalLight.diffuse.r = color[0].GetFloat();
+		mDirectionalLight.diffuse.g = color[1].GetFloat();
+		mDirectionalLight.diffuse.b = color[2].GetFloat();
+		mDirectionalLight.diffuse.a = color[3].GetFloat();
+	}
+	if (value.HasMember("Specular"))
+	{
+		auto color = value["Specular"].GetArray();
+		mDirectionalLight.specular.r = color[0].GetFloat();
+		mDirectionalLight.specular.g = color[1].GetFloat();
+		mDirectionalLight.specular.b = color[2].GetFloat();
+		mDirectionalLight.specular.a = color[3].GetFloat();
+	}
+	mDirectionalLight.direction = Normalize(mDirectionalLight.direction);
 }
