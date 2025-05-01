@@ -4,7 +4,7 @@
 
 namespace SumEngine
 {
-	class RenderObjectComponent :public Component
+	class RenderObjectComponent : public Component
 	{
 	public:
 		void Initialize() override;

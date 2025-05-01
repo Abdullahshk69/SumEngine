@@ -9,7 +9,7 @@ using namespace SumEngine::Audio;
 
 void GameState::Initialize()
 {
-	mGameWorld.LoadLevel(L"../../Assets/Templates/Levels/Test_Level.json");
+	mGameWorld.LoadLevel(L"../../Assets/Templates/Levels/test_level.json");
 }
 
 void GameState::Terminate()

@@ -14,6 +14,7 @@
 #include <Bullet/BulletSoftBody/btSoftBodySolvers.h>
 
 #define USE_SOFT_BODY
+#define USE_PHYSICS_SERVICE
 
 // helper function
 template<class T>

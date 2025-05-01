@@ -1,0 +1,54 @@
+{
+  "Components": {
+    "TransformComponent": {
+      "Position": [ 0.0, 10.0, 0.0 ],
+      "Rotation": [ 0.0, 0.0, 0.0, 1.0 ],
+      "Scale": [ 1.0, 1.0, 1.0 ]
+    },
+    "ModelComponent": {
+      "FileName": "../../Assets/Models/Ortiz/Ch43_nonPBR.model",
+      "Animations": [
+        "../../Assets/Models/Ortiz/BicycleCrunch.animset",
+        "../../Assets/Models/Ortiz/BodyBlock.animset",
+        "../../Assets/Models/Ortiz/CenterBlock_1.animset",
+        "../../Assets/Models/Ortiz/CenterBlock_2.animset",
+        "../../Assets/Models/Ortiz/Chapa-Giratoria.animset",
+        "../../Assets/Models/Ortiz/DropKick.animset",
+        "../../Assets/Models/Ortiz/Falling_1.animset",
+        "../../Assets/Models/Ortiz/FallingFlatImpact.animset",
+        "../../Assets/Models/Ortiz/FightIdle.animset",
+        "../../Assets/Models/Ortiz/FlyingKneePunchCombo.animset",
+        "../../Assets/Models/Ortiz/HeaderSoccerball.animset",
+        "../../Assets/Models/Ortiz/HeadHit_1.animset",
+        "../../Assets/Models/Ortiz/HeadHit_2.animset",
+        "../../Assets/Models/Ortiz/HeadHit_3.animset",
+        "../../Assets/Models/Ortiz/HipHopDancing.animset",
+        "../../Assets/Models/Ortiz/HurricaneKick.animset",
+        "../../Assets/Models/Ortiz/JumpAttack.animset",
+        "../../Assets/Models/Ortiz/JumpingDown_1.animset",
+        "../../Assets/Models/Ortiz/Martelo2.animset",
+        "../../Assets/Models/Ortiz/MutantPunch.animset",
+        "../../Assets/Models/Ortiz/Praying.animset",
+        "../../Assets/Models/Ortiz/PunchingBag.animset",
+        "../../Assets/Models/Ortiz/RumbaDancing.animset",
+        "../../Assets/Models/Ortiz/SittingClap.animset",
+        "../../Assets/Models/Ortiz/Standing_1.animset",
+        "../../Assets/Models/Ortiz/StandingMeleeAttackKick.animset",
+        "../../Assets/Models/Ortiz/StandingReactDeathForward.animset",
+        "../../Assets/Models/Ortiz/StandingUp.animset",
+        "../../Assets/Models/Ortiz/Swinging.animset"
+      ]
+    },
+    "AnimatorComponent": {
+
+    },
+    "RigidBodyComponent": {
+      "Mass": 1.0,
+      "ColliderData": {
+        "Shape": "Hull",
+        "HalfExtents": [ 0.5, 1.0, 0.5 ],
+        "Origin": [ 0.0, 1.0, 0.0 ]
+      }
+    }
+  }
+}

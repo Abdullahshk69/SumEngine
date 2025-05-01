@@ -4,12 +4,14 @@
 #include "GameObject.h"
 #include "GameWorld.h"
 
-#include "Component.h"
-#include "CameraComponent.h"
-#include "FPSCameraComponent.h"
-#include "TransformComponent.h"
-#include "MeshComponent.h"
 #include "AnimatorComponent.h"
+#include "CameraComponent.h"
+#include "Component.h"
+#include "FPSCameraComponent.h"
+#include "MeshComponent.h"
+#include "ModelComponent.h"
+#include "RigidBodyComponent.h"
+#include "TransformComponent.h"
 
 using namespace SumEngine;
 
@@ -18,7 +20,11 @@ namespace
 	Component* AddComponent(const std::string& componentName, GameObject& gameObject)
 	{
 		Component* newComponent = nullptr;
-		if (componentName == "CameraComponent")
+		if (componentName == "AnimatorComponent")
+		{
+			newComponent = gameObject.AddComponent<AnimatorComponent>();
+		}
+		else if (componentName == "CameraComponent")
 		{
 			newComponent = gameObject.AddComponent<CameraComponent>();
 		}
@@ -26,17 +32,21 @@ namespace
 		{
 			newComponent = gameObject.AddComponent<FPSCameraComponent>();
 		}
-		else if (componentName == "TransformComponent")
-		{
-			newComponent = gameObject.AddComponent<TransformComponent>();
-		}
 		else if (componentName == "MeshComponent")
 		{
 			newComponent = gameObject.AddComponent<MeshComponent>();
 		}
-		else if (componentName == "AnimatorComponent")
+		else if (componentName == "ModelComponent")
 		{
-			newComponent = gameObject.AddComponent<AnimatorComponent>();
+			newComponent = gameObject.AddComponent<ModelComponent>();
+		}
+		else if (componentName == "RigidBodyComponent")
+		{
+			newComponent = gameObject.AddComponent<RigidBodyComponent>();
+		}
+		else if (componentName == "TransformComponent")
+		{
+			newComponent = gameObject.AddComponent<TransformComponent>();
 		}
 		else
 		{
@@ -45,6 +55,45 @@ namespace
 
 		return newComponent;
 	}
+}
+
+Component* GetComponent(const std::string& componentName, GameObject& gameObject)
+{
+	Component* component = nullptr;
+	if (componentName == "AnimatorComponent")
+	{
+		component = gameObject.GetComponent<AnimatorComponent>();
+	}
+	else if (componentName == "CameraComponent")
+	{
+		component = gameObject.GetComponent<CameraComponent>();
+	}
+	else if (componentName == "FPSCameraComponent")
+	{
+		component = gameObject.GetComponent<FPSCameraComponent>();
+	}
+	else if (componentName == "MeshComponent")
+	{
+		component = gameObject.GetComponent<MeshComponent>();
+	}
+	else if (componentName == "ModelComponent")
+	{
+		component = gameObject.GetComponent<ModelComponent>();
+	}
+	else if (componentName == "RigidBodyComponent")
+	{
+		component = gameObject.GetComponent<RigidBodyComponent>();
+	}
+	else if (componentName == "TransformComponent")
+	{
+		component = gameObject.GetComponent<TransformComponent>();
+	}
+	else
+	{
+		ASSERT(false, "GameObjectFactory: component [%s] is not valid", componentName.c_str());
+	}
+
+	return component;
 }
 
 void GameObjectFactory::Make(const std::filesystem::path& templatePath, GameObject& gameObject, GameWorld& gameWorld)
@@ -71,37 +120,6 @@ void GameObjectFactory::Make(const std::filesystem::path& templatePath, GameObje
 			newComponent->Deserialize(component.value);
 		}
 	}
-}
-
-Component* GetComponent(const std::string& componentName, GameObject& gameObject)
-{
-	Component* component = nullptr;
-	if (componentName == "CameraComponent")
-	{
-		component = gameObject.GetComponent<CameraComponent>();
-	}
-	else if (componentName == "FPSCameraComponent")
-	{
-		component = gameObject.GetComponent<FPSCameraComponent>();
-	}
-	else if (componentName == "TransformComponent")
-	{
-		component = gameObject.GetComponent<TransformComponent>();
-	}
-	else if (componentName == "MeshComponent")
-	{
-		component = gameObject.GetComponent<MeshComponent>();
-	}
-	else if (componentName == "AnimatorComponent")
-	{
-		component = gameObject.GetComponent<AnimatorComponent>();
-	}
-	else
-	{
-		ASSERT(false, "GameObjectFactory: component [%s] is not valid", componentName.c_str());
-	}
-
-	return component;
 }
 
 void GameObjectFactory::OverrideDeserialize(const rapidjson::Value& value, GameObject& gameObject)

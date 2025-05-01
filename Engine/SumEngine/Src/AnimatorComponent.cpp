@@ -20,10 +20,14 @@ void AnimatorComponent::Update(float deltaTime)
 
 void AnimatorComponent::DebugUI()
 {
-	std::string buttonTag = "PlayAnim";
 	uint32_t animCount = mAnimator.GetAnimationCount();
 	if (animCount > 0)
 	{
+		if (ImGui::Button("StopAnim"))
+		{
+			Play(-1);
+		}
+		std::string buttonTag = "PlayAnim";
 		for (uint32_t i = 0; i < animCount; ++i)
 		{
 			std::string buttonName = buttonTag + std::to_string(i);
@@ -37,7 +41,7 @@ void AnimatorComponent::DebugUI()
 
 bool AnimatorComponent::Play(int index, bool looping)
 {
-	if (index < mAnimator.GetAnimationCount())
+	if (index < 0 || index < mAnimator.GetAnimationCount())
 	{
 		mAnimator.PlayAnimation(index, looping);
 		return true;

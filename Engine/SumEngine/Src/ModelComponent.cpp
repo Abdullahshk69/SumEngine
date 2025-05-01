@@ -16,7 +16,8 @@ void ModelComponent::Initialize()
 		}
 	}
 
-	ASSERT(mc->GetModel(mModelId) != nullptr, "ModelComponent: model is not null %s", );
+	ASSERT(mc->GetModel(mModelId) != nullptr, "ModelComponent: model is not null %s", mFileName.c_str());
+	RenderObjectComponent::Initialize();
 }
 
 void ModelComponent::Terminate()

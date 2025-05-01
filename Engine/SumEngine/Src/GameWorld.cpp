@@ -3,6 +3,7 @@
 #include "GameObjectFactory.h"
 
 #include "CameraService.h"
+#include "PhysicsService.h"
 #include "RenderService.h"
 
 using namespace SumEngine;
@@ -118,7 +119,7 @@ void GameWorld::DestroyGameObject(const GameObjectHandle& handle)
 	mToBeDestroyed.push_back(handle.mIndex);
 }
 
-void GameWorld::LoadLevel(const std::filesystem::path levelFile)
+void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
 {
 	mLevelFileName = levelFile;
 
@@ -141,6 +142,10 @@ void GameWorld::LoadLevel(const std::filesystem::path levelFile)
 		if (serviceName == "CameraService")
 		{
 			newService = AddService<CameraService>();
+		}
+		else if (serviceName == "PhysicsService")
+		{
+			newService = AddService<PhysicsService>();
 		}
 		else if (serviceName == "RenderService")
 		{

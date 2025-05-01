@@ -72,7 +72,10 @@ void App::Run(const AppConfig& config)
 #endif
 		{
 			mCurrentState->Update(deltaTime);
+#ifndef USE_PHYSICS_SERVICE
 			PhysicsWorld::Get()->Update(deltaTime);
+#endif
+
 		}
 
 		// This is where we send information from cpu to gpu
@@ -98,7 +101,7 @@ void App::Run(const AppConfig& config)
 	DebugUI::StaticTerminate();
 	InputSystem::StaticTerminate();
 	GraphicsSystem::StaticTerminate();
-	
+
 	myWindow.Terminate();
 }
 
