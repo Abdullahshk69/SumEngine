@@ -12,6 +12,8 @@ namespace SumEngine
 		Model,			// adds a model to the game object
 		Animator,		// adds an animation controller to the game object
 		RigidBody,		// adds a physics body shape to the game object
+		SoundEffect,	// adds a sound effect to the object
+		SoundBank,		// adds a group of sound effects to an object
 		Count			// last value, chain ids in custom components
 	};
 

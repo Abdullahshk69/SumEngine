@@ -23,7 +23,8 @@ namespace SumEngine::Audio
 		SoundId Load(const std::filesystem::path& fileName);
 		void Clear();
 
-		void Play(SoundId id, float volume = 1.0f, bool loop = false);
+		void Play(SoundId id, bool loop = false);
+		void Play(SoundId id, float volume = 10.0f, bool loop = false);
 		void Stop(SoundId id);
 
 	private:
