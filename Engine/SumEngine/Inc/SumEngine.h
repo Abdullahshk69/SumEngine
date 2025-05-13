@@ -17,6 +17,7 @@
 #include "SoundBankComponent.h"
 #include "SoundEffectComponent.h"
 #include "TransformComponent.h"
+#include "UIComponent.h"
 
 // Game Object
 #include "GameObject.h"
@@ -29,6 +30,7 @@
 #include "Service.h"
 #include "CameraService.h"
 #include "RenderService.h"
+#include "UIRenderService.h"
 
 namespace SumEngine
 {

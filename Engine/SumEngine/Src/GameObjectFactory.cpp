@@ -14,6 +14,7 @@
 #include "SoundBankComponent.h"
 #include "SoundEffectComponent.h"
 #include "TransformComponent.h"
+#include "UITextComponent.h"
 
 using namespace SumEngine;
 
@@ -60,6 +61,10 @@ namespace
         else if (componentName == "TransformComponent")
         {
             newComponent = gameObject.AddComponent<TransformComponent>();
+        }
+        else if (componentName == "UITextComponent")
+        {
+            newComponent = gameObject.AddComponent<UITextComponent>();
         }
         else
         {

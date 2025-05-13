@@ -55,11 +55,17 @@
             "Looping": true
         },
         "CustomDebugDrawComponent": {
-            "Position": [ 0.0, 0.0, 0.0 ],
+            "Position": [ 0.0, 1.0, 0.0 ],
             "Color": [ 0.8, 1.0, 0.0, 1.0 ],
             "Slices": 30,
             "Rings": 30,
             "Radius": 1.0
+        },
+        "UITextComponent": {
+            "Text": "Selamat Pagi",
+            "Position": [ 300.0, 300.0 ],
+            "Size": 120,
+            "Color": [ 1.0, 1.0, 0.0, 1.0 ]
         }
     }
 }

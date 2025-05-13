@@ -5,6 +5,7 @@
 #include "CameraService.h"
 #include "PhysicsService.h"
 #include "RenderService.h"
+#include "UIRenderService.h"
 
 using namespace SumEngine;
 
@@ -160,6 +161,10 @@ void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
 		else if (serviceName == "RenderService")
 		{
 			newService = AddService<RenderService>();
+		}
+		else if (serviceName == "UIRenderService")
+		{
+			newService = AddService<UIRenderService>();
 		}
 		else
 		{
