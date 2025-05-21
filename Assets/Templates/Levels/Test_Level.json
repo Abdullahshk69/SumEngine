@@ -45,6 +45,9 @@
         },
         "Ground": {
             "Template": "../../Assets/Templates/ground_obj.json"
+        },
+        "TestScreen": {
+            "Template": "../../Assets/Templates/UI/test_screen.json"
         }
     }
 }

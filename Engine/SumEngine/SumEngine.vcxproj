@@ -161,8 +161,10 @@
     <ClInclude Include="Inc\SumEngine.h" />
     <ClInclude Include="Inc\TransformComponent.h" />
     <ClInclude Include="Inc\TypeIds.h" />
+    <ClInclude Include="Inc\UIButtonComponent.h" />
     <ClInclude Include="Inc\UIComponent.h" />
     <ClInclude Include="Inc\UIRenderService.h" />
+    <ClInclude Include="Inc\UISpriteComponent.h" />
     <ClInclude Include="Inc\UITextComponent.h" />
     <ClInclude Include="Src\Precompiled.h" />
   </ItemGroup>
@@ -190,7 +192,9 @@
     <ClCompile Include="Src\SoundEffectComponent.cpp" />
     <ClCompile Include="Src\SumEngine.cpp" />
     <ClCompile Include="Src\TransformComponent.cpp" />
+    <ClCompile Include="Src\UIButtonComponent.cpp" />
     <ClCompile Include="Src\UiRenderService.cpp" />
+    <ClCompile Include="Src\UISpriteComponent.cpp" />
     <ClCompile Include="Src\UITextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>

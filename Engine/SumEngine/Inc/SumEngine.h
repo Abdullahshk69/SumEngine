@@ -18,6 +18,8 @@
 #include "SoundEffectComponent.h"
 #include "TransformComponent.h"
 #include "UIComponent.h"
+#include "UIButtonComponent.h"
+#include "UISpriteComponent.h"
 
 // Game Object
 #include "GameObject.h"

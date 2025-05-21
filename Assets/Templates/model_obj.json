@@ -60,12 +60,16 @@
             "Slices": 30,
             "Rings": 30,
             "Radius": 1.0
-        },
-        "UITextComponent": {
-            "Text": "Selamat Pagi",
-            "Position": [ 300.0, 300.0 ],
-            "Size": 120,
-            "Color": [ 1.0, 1.0, 0.0, 1.0 ]
+        }
+    },
+    "Children": {
+        "Mesh_Test": {
+            "Template": "../../Assets/Templates/mesh_obj.json",
+            "Components": {
+                "TransformComponent": {
+                    "Position": [ 1, 1, 0 ]
+                }
+            }
         }
     }
 }

@@ -25,6 +25,14 @@ namespace SumEngine
 		const GameWorld& GetWorld() const;
 		const GameObjectHandle& GetHandle() const;
 
+		void AddChild(GameObject* child);
+		GameObject* GetChild(uint32_t index);
+		const GameObject* GetChild(uint32_t index) const;
+
+		void SetParent(GameObject* parent);
+		GameObject* GetParent();
+		const GameObject* GetParent() const;
+
 		template<class ComponentType>
 		ComponentType* AddComponent()
 		{
@@ -93,5 +101,9 @@ namespace SumEngine
 
 		using Components = std::vector<std::unique_ptr<Component>>;
 		Components mComponents;
+
+		using Children = std::vector<GameObject*>;
+		Children mChildren;
+		GameObject* mParent = nullptr;
 	};
 }
