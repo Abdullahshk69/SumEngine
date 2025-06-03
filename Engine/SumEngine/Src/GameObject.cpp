@@ -1,5 +1,6 @@
 #include "Precompiled.h"
 #include "GameObject.h"
+#include "GameWorld.h"
 
 using namespace SumEngine;
 
@@ -52,6 +53,14 @@ void GameObject::DebugUI()
 		for (auto& component : mComponents)
 		{
 			component->DebugUI();
+		}
+
+		if (!mWorld->IsInEditMode())
+		{
+			if (ImGui::Button("Edit"))
+			{
+				mWorld->EditTemplate(mTemplatePath);
+			}
 		}
 	}
 	ImGui::PopID();

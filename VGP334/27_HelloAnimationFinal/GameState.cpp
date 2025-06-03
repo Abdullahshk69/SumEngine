@@ -143,6 +143,7 @@ void GameState::Initialize()
 	mAnimation = AnimationBuilder()
 		.AddPositionKey(mCharacter2.transform.position, 0.01f)
 		.AddEventKey([&]() { mCharacterAnimator.PlayAnimation(20, true); }, 0.01f)
+		//.AddEventKey(Test, 3.0f)
 		.AddEventKey([&]() { mCharacterAnimator2.PlayAnimation(15, true); }, 0.01f)
 		.AddEventKey([&]() { PlayVoice(0); }, voiceTimer += 0.5f)
 		.AddEventKey([&]() { mCharacterAnimator.PlayAnimation(24, true); }, voiceTimer + 5.0f)
@@ -301,6 +302,11 @@ void GameState::Initialize()
 	mParticleSystem.Initialize(info);
 
 	mAnimationTime = 0;
+}
+
+void Test()
+{
+
 }
 
 void GameState::Terminate()

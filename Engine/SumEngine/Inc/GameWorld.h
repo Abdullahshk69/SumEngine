@@ -17,11 +17,15 @@ namespace SumEngine
 		void Update(float deltaTime);
 		void Render();
 		void DebugUI();
+		void SaveEditTemplate();
 
 		GameObject* CreateGameObject(std::string name, const std::filesystem::path& templatePath = "");
 		void DestroyGameObject(const GameObjectHandle& handle);
 
-		void LoadLevel(const std::filesystem::path& levelFile);
+		void LoadLevel(const std::filesystem::path& levelFile, bool isEditor = false);
+		bool IsInEditMode() const;
+		bool IsRequestEdit() const;
+		void EditTemplate(const std::filesystem::path& templatePath);
 
 		template<class ServiceType>
 		ServiceType* AddService()
@@ -74,6 +78,8 @@ namespace SumEngine
 		Services mServices;
 
 		std::filesystem::path mLevelFileName;
+		GameObject* mEditGameObject = nullptr;
 		bool mInitialized = false;
+		bool mIsEditor = false;
 	};
 }

@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "GameWorld.h"
 #include "RenderService.h"
+#include "SaveUtil.h"
 
 using namespace SumEngine;
 
@@ -23,10 +24,12 @@ void RenderObjectComponent::Terminate()
 
 void RenderObjectComponent::Deserialize(const rapidjson::Value& value)
 {
-	if (value.HasMember("CastShadow"))
-	{
-		mCastShadow = value["CastShadow"].GetBool();
-	}
+	SaveUtil::ReadBool("CastShadow", mCastShadow, value);
+}
+
+void RenderObjectComponent::Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& original)
+{
+	SaveUtil::WriteBool("CastShadow", mCastShadow, doc, value);
 }
 
 bool RenderObjectComponent::CanCastShadow() const

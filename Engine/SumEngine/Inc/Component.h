@@ -21,7 +21,7 @@ namespace SumEngine
 		virtual void Update(float deltaTime) {}
 		virtual void DebugUI() {}
 
-		virtual void Serialize(rapidjson::Document& doc, rapidjson::Value& value) {}
+		virtual void Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& original) {}
 		virtual void Deserialize(const rapidjson::Value& value) {}
 
 		virtual uint32_t GetTypeId() const = 0;

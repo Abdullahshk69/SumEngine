@@ -1,6 +1,8 @@
 #include "Precompiled.h"
 #include "MeshComponent.h"
 
+#include "SaveUtil.h"
+
 using namespace SumEngine;
 
 void MeshComponent::Deserialize(const rapidjson::Value& value)
@@ -54,63 +56,56 @@ void MeshComponent::Deserialize(const rapidjson::Value& value)
 	if (value.HasMember("Material"))
 	{
 		const auto& materialData = value["Material"].GetObj();
-		if (materialData.HasMember("Emissive"))
-		{
-			const auto& color = materialData["Emissive"].GetArray();
-			matData.material.emissive.r = color[0].GetFloat();
-			matData.material.emissive.g = color[1].GetFloat();
-			matData.material.emissive.b = color[2].GetFloat();
-			matData.material.emissive.a = color[3].GetFloat();
-		}
-		if (materialData.HasMember("Ambient"))
-		{
-			const auto& color = materialData["Ambient"].GetArray();
-			matData.material.ambient.r = color[0].GetFloat();
-			matData.material.ambient.g = color[1].GetFloat();
-			matData.material.ambient.b = color[2].GetFloat();
-			matData.material.ambient.a = color[3].GetFloat();
-		}
-		if (materialData.HasMember("Diffuse"))
-		{
-			const auto& color = materialData["Diffuse"].GetArray();
-			matData.material.diffuse.r = color[0].GetFloat();
-			matData.material.diffuse.g = color[1].GetFloat();
-			matData.material.diffuse.b = color[2].GetFloat();
-			matData.material.diffuse.a = color[3].GetFloat();
-		}
-		if (materialData.HasMember("Specular"))
-		{
-			const auto& color = materialData["Specular"].GetArray();
-			matData.material.specular.r = color[0].GetFloat();
-			matData.material.specular.g = color[1].GetFloat();
-			matData.material.specular.b = color[2].GetFloat();
-			matData.material.specular.a = color[3].GetFloat();
-		}
-		if (materialData.HasMember("SpecularPower"))
-		{
-			matData.material.power = materialData["SpecularPower"].GetFloat();
-		}
+		SaveUtil::ReadColor("Emissive", matData.material.emissive, materialData);
+		SaveUtil::ReadColor("Ambient", matData.material.ambient, materialData);
+		SaveUtil::ReadColor("Diffuse", matData.material.diffuse, materialData);
+		SaveUtil::ReadColor("Specular", matData.material.specular, materialData);
+		SaveUtil::ReadFloat("SpecularPower", matData.material.power, materialData);
 	}
 	if (value.HasMember("Textures"))
 	{
 		const auto& textureData = value["Textures"].GetObj();
-		if (textureData.HasMember("DiffuseMap"))
-		{
-			matData.diffuseMapName = textureData["DiffuseMap"].GetString();
-		}
-		if (textureData.HasMember("NormalMap"))
-		{
-			matData.normalMapName = textureData["NormalMap"].GetString();
-		}
-		if (textureData.HasMember("SpecMap"))
-		{
-			matData.specMapName = textureData["SpecMap"].GetString();
-		}
-		if (textureData.HasMember("BumpMap"))
-		{
-			matData.bumpMapName = textureData["BumpMap"].GetString();
-		}
+		SaveUtil::ReadString("DiffuseMap", matData.diffuseMapName, textureData);
+		SaveUtil::ReadString("NormalMap", matData.normalMapName, textureData);
+		SaveUtil::ReadString("SpecMap", matData.specMapName, textureData);
+		SaveUtil::ReadString("BumpMap", matData.bumpMapName, textureData);
 	}
+}
+
+void MeshComponent::Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& original)
+{
+	rapidjson::Value componentValue(rapidjson::kObjectType);
+	RenderObjectComponent::Serialize(doc, componentValue, original);
+
+	// shape cannot be changed via the editor
+	if (original.HasMember("Shape"))
+	{
+		rapidjson::Value shapeObject(rapidjson::kObjectType);
+		shapeObject.CopyFrom(original["Shape"], doc.GetAllocator());
+		componentValue.AddMember("Shape", shapeObject, doc.GetAllocator());
+	}
+	if (original.HasMember("Material") && !mModel.materialData.empty())
+	{
+		Graphics::Model::MaterialData& matData = mModel.materialData.front();
+		rapidjson::Value materialData(rapidjson::kObjectType);
+		SaveUtil::WriteColor("Emissive", matData.material.emissive, doc, materialData);
+		SaveUtil::WriteColor("Ambient", matData.material.ambient, doc, materialData);
+		SaveUtil::WriteColor("Diffuse", matData.material.diffuse, doc, materialData);
+		SaveUtil::WriteColor("Specular", matData.material.specular, doc, materialData);
+		SaveUtil::WriteFloat("SpecularPower", matData.material.power, doc, materialData);
+		componentValue.AddMember("Material", materialData, doc.GetAllocator());
+	}
+	if (original.HasMember("Textures") && !mModel.materialData.empty())
+	{
+		Graphics::Model::MaterialData& matData = mModel.materialData.front();
+		rapidjson::Value textureData(rapidjson::kObjectType);
+		SaveUtil::WriteString("DiffuseMap", matData.diffuseMapName.c_str(), doc, textureData);
+		SaveUtil::WriteString("NormalMap", matData.normalMapName.c_str(), doc, textureData);
+		SaveUtil::WriteString("SpecMap", matData.specMapName.c_str(), doc, textureData);
+		SaveUtil::WriteString("BumpMap", matData.bumpMapName.c_str(), doc, textureData);
+		componentValue.AddMember("Material", textureData, doc.GetAllocator());
+	}
+	value.AddMember("MeshComponent", componentValue, doc.GetAllocator());
 }
 
 const Graphics::Model& MeshComponent::GetModel() const

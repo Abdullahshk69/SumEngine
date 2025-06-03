@@ -31,6 +31,7 @@
 // Services
 #include "Service.h"
 #include "CameraService.h"
+#include "PhysicsService.h"
 #include "RenderService.h"
 #include "UIRenderService.h"
 

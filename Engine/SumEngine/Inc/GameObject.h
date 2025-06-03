@@ -98,6 +98,7 @@ namespace SumEngine
 		uint32_t mUniqueId = 0;
 		GameWorld* mWorld = nullptr;
 		GameObjectHandle mHandle;
+		std::filesystem::path mTemplatePath;
 
 		using Components = std::vector<std::unique_ptr<Component>>;
 		Components mComponents;
