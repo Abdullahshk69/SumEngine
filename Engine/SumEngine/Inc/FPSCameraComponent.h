@@ -18,7 +18,7 @@ namespace SumEngine
 		void Deserialize(const rapidjson::Value& value) override;
 		void Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& original) override;
 
-	private:
+	protected:
 		CameraComponent* mCameraComponent = nullptr;
 		float mShiftSpeed = 10.0f;
 		float mMoveSpeed = 1.0f;

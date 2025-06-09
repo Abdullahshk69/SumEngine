@@ -48,60 +48,6 @@ struct TexturedObject
 	}
 };
 
-//class Entity
-//{
-//public:
-//	SumEngine::Math::Matrix4 transform;
-//	SumEngine::Graphics::MeshBuffer mMeshBuffer;
-//	SumEngine::Graphics::Texture mDiffuseTexture;
-//
-//	virtual void Initialize(SumEngine::Graphics::MeshPX mesh, const std::filesystem::path& fileName);
-//
-//	virtual void UpdatePosition(float deltaTime)
-//	{
-//		return;
-//	}
-//};
-//
-//class Galaxy : Entity
-//{
-//public:
-//	Galaxy();
-//};
-//
-//class Sun : Entity
-//{
-//public:
-//	float mRotationSpeed;
-//
-//	void Initialize(SumEngine::Graphics::MeshPX mesh, const std::filesystem::path& fileName);
-//
-//	void UpdatePosition(float deltaTime) override
-//	{
-//		transform = SumEngine::Math::Matrix4::Identity * SumEngine::Math::Matrix4::RotationY(mRotationSpeed * deltaTime);
-//	}
-//};
-//
-//class Planets : Entity
-//{
-//	float mRotationSpeed;	//localRotation
-//	float mDistanceFromSun;
-//	float mOrbitSpeed;
-//
-//	void Initialize(SumEngine::Graphics::MeshPX mesh, const std::filesystem::path& fileName, float rotationSpeed, float distanceFromSun, float orbitSpeed)
-//	{
-//		Entity::Initialize(mesh, fileName);
-//		mRotationSpeed = rotationSpeed;
-//		mDistanceFromSun = distanceFromSun;
-//		mOrbitSpeed = orbitSpeed;
-//	}
-//
-//	void UpdatePosition(float deltaTime) override
-//	{
-//		transform = SumEngine::Math::Matrix4::Identity * (mRotationSpeed * deltaTime);
-//	}
-//};
-
 class GameState : public SumEngine::AppState
 {
 public:

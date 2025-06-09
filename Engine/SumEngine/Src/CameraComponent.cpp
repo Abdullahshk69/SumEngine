@@ -82,3 +82,8 @@ const Camera& CameraComponent::GetCamera() const
 {
 	return mCamera;
 }
+
+// add Update
+// check if TransformComponent or RigidBodyComponent
+// if either, use their transforms (or at least position)
+// if desired, use transform or rb forward as the look direction

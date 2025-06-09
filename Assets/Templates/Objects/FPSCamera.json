@@ -1,0 +1,44 @@
+{
+    "Components": {
+        "TransformComponent": {
+            "Position": [ 0.0, 10.0, 0.0 ],
+            "Rotation": [ 0.0, 0.0, 0.0, 1.0 ],
+            "Scale": [ 1.0, 1.0, 1.0 ]
+        },
+        "RigidBodyComponent": {
+            "Mass": 1.0,
+            "ColliderData": {
+                "Shape": "Hull",
+                "HalfExtents": [ 0.5, 1.0, 0.5 ],
+                "Origin": [ 0.0, 1.0, 0.0 ]
+            }
+        },
+        "CameraComponent": {
+
+        },
+        "CS_FPSControllerComponent": {
+            "MoveSpeed": 2.0,
+            "TurnSpeed": 0.05
+        }
+    },
+    "SoundBankComponent": {
+        "SoundEffects": {
+            "Blast": {
+                "FileName": "../../Assets/Sounds/megamanx_blast.wav",
+                "Looping": false
+            },
+            "Title": {
+                "FileName": "megamanx_title.wav",
+                "Looping": true
+            },
+            "Eagle": {
+                "FileName": "megamanx_storm_eagle.wav",
+                "Looping": false
+            },
+            "Mandrill": {
+                "FileName": "megamanx_spark_mandrill.wav",
+                "Looping": false
+            }
+        }
+    }
+}

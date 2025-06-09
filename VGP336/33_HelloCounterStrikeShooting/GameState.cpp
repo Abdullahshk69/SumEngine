@@ -1,6 +1,5 @@
 #include "GameState.h"
-#include "CustomDebugDrawService.h"
-#include "CustomDebugDrawComponent.h"
+#include "CS_FPSControllerComponent.h"
 
 using namespace SumEngine;
 using namespace SumEngine::Math;
@@ -9,29 +8,29 @@ using namespace SumEngine::Core;
 using namespace SumEngine::Input;
 using namespace SumEngine::Audio;
 
-Service* CustomServiceMake(const std::string& serviceName, GameWorld& gameWorld)
-{
-	if (serviceName == "CustomDebugDrawService")
-	{
-		return gameWorld.AddService<CustomDebugDrawService>();
-	}
-	return nullptr;
-}
+//Service* CustomServiceMake(const std::string& serviceName, GameWorld& gameWorld)
+//{
+//	if (serviceName == "CS_CharacterMovementComponent")
+//	{
+//		return gameWorld.AddService<CS_CharacterMovementComponent>();
+//	}
+//	return nullptr;
+//}
 
 Component* CustomComponentMake(const std::string& componentName, GameObject& gameObject)
 {
-	if (componentName == "CustomDebugDrawComponent")
+	if (componentName == "CS_FPSControllerComponent")
 	{
-		return gameObject.AddComponent<CustomDebugDrawComponent>();
+		return gameObject.AddComponent<CS_FPSControllerComponent>();
 	}
 	return nullptr;
 }
 
 Component* CustomComponentGet(const std::string& componentName, GameObject& gameObject)
 {
-	if (componentName == "CustomDebugDrawComponent")
+	if (componentName == "CS_FPSControllerComponent")
 	{
-		return gameObject.GetComponent<CustomDebugDrawComponent>();
+		return gameObject.GetComponent<CS_FPSControllerComponent>();
 	}
 	return nullptr;
 }
@@ -39,11 +38,11 @@ Component* CustomComponentGet(const std::string& componentName, GameObject& game
 
 void GameState::Initialize()
 {
-	GameWorld::SetCustomService(CustomServiceMake);
+	//GameWorld::SetCustomService(CustomServiceMake);
 	GameObjectFactory::SetCustomMake(CustomComponentMake);
 	GameObjectFactory::SetCustomGet(CustomComponentGet);
 
-	mGameWorld.LoadLevel(L"../../Assets/Templates/Levels/test_level.json");
+	mGameWorld.LoadLevel(L"../../Assets/Templates/Levels/final_level.json");
 }
 
 void GameState::Terminate()
@@ -54,11 +53,6 @@ void GameState::Terminate()
 void GameState::Update(float deltaTime)
 {
 	mGameWorld.Update(deltaTime);
-
-	if (InputSystem::Get()->IsKeyPressed(KeyCode::SPACE))
-	{
-		GraphicsSystem::Get()->ToggleFullScreen();
-	}
 }
 
 void GameState::Render()

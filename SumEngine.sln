@@ -132,6 +132,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Levels", "Levels", "{641CCA0D-D2DC-473E-B0BF-A0B8C5C25370}"
 	ProjectSection(SolutionItems) = preProject
 		Assets\Templates\Levels\editor_level.json = Assets\Templates\Levels\editor_level.json
+		Assets\Templates\Levels\final_level.json = Assets\Templates\Levels\final_level.json
 		Assets\Templates\Levels\test_level.json = Assets\Templates\Levels\test_level.json
 	EndProjectSection
 EndProject
@@ -144,6 +145,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{02EA681E-C7D8-
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "32_HelloEditor", "VGP336\32_HelloEditor\32_HelloEditor.vcxproj", "{DC61064E-7E6D-43B5-BFB7-C6D8C6E58353}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "33_HelloCounterStrikeShooting", "VGP336\33_HelloCounterStrikeShooting\33_HelloCounterStrikeShooting.vcxproj", "{BABA1F76-44F5-45B4-A393-46D6261D5B0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{3FE9DC27-60CE-467C-B5F7-A3E10964406B}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\Templates\Objects\FPSCamera.json = Assets\Templates\Objects\FPSCamera.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -505,6 +513,14 @@ Global
 		{DC61064E-7E6D-43B5-BFB7-C6D8C6E58353}.Release|x64.Build.0 = Release|x64
 		{DC61064E-7E6D-43B5-BFB7-C6D8C6E58353}.Release|x86.ActiveCfg = Release|Win32
 		{DC61064E-7E6D-43B5-BFB7-C6D8C6E58353}.Release|x86.Build.0 = Release|Win32
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F}.Debug|x64.ActiveCfg = Debug|x64
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F}.Debug|x64.Build.0 = Debug|x64
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F}.Debug|x86.ActiveCfg = Debug|Win32
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F}.Debug|x86.Build.0 = Debug|Win32
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F}.Release|x64.ActiveCfg = Release|x64
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F}.Release|x64.Build.0 = Release|x64
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F}.Release|x86.ActiveCfg = Release|Win32
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -558,6 +574,8 @@ Global
 		{0D034612-14E2-44E7-993A-72344A2CA7BD} = {9B740904-0C02-4FC2-8E02-A3D382C43E73}
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {E80072F9-41DC-47A1-B9EC-D7E767921B72}
 		{DC61064E-7E6D-43B5-BFB7-C6D8C6E58353} = {FC410864-422B-46D5-9791-725485426318}
+		{BABA1F76-44F5-45B4-A393-46D6261D5B0F} = {FC410864-422B-46D5-9791-725485426318}
+		{3FE9DC27-60CE-467C-B5F7-A3E10964406B} = {E80072F9-41DC-47A1-B9EC-D7E767921B72}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE74B6F-6EB1-4809-B285-5C9440857B8D}

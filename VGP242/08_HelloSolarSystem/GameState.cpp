@@ -269,6 +269,5 @@ void GameState::DebugUI()
 		{ 1, 1, 1, 1 },
 		{ 1, 1, 1, 1 });
 
-
 	ImGui::End();
 }

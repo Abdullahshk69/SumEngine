@@ -30,7 +30,6 @@ LRESULT CALLBACK GraphicsSystem::GraphicsSystemMessageHandler(HWND handle, UINT 
 	return sWindowsMessageHandler.ForwardMessage(handle, message, wparam, lParam);
 }
 
-
 void GraphicsSystem::StaticInitialize(HWND window, bool fullscreen)
 {
 	ASSERT(sGraphicsSystem == nullptr, "GraphicsSystem: is already initialized");
@@ -107,8 +106,6 @@ void GraphicsSystem::Initialize(HWND window, bool fullscreen)
 
 void GraphicsSystem::Terminate()
 {
-
-
 	SafeRelease(mDepthStencilView);
 	SafeRelease(mDepthStencilBuffer);
 	SafeRelease(mRenderTargetView);
@@ -239,4 +236,3 @@ ID3D11DeviceContext* GraphicsSystem::GetContext()
 {
 	return mImmediateContext;
 }
-

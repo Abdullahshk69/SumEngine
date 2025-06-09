@@ -28,7 +28,7 @@ namespace SumEngine::Graphics
 		void SetFarPlane(float farPlane);
 
 		// camera movement
-		// 3 defrees of freedom for translation
+		// 3 degrees of freedom for translation
 		void Walk(float distance);
 		void Strafe(float distance);
 		void Rise(float distance);
