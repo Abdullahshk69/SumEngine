@@ -6,6 +6,7 @@
 #include "AppState.h"
 #include "Event.h"
 #include "EventManager.h"
+#include "SaveUtil.h"
 
 // Components
 #include "Component.h"
@@ -14,6 +15,7 @@
 #include "MeshComponent.h"
 #include "ModelComponent.h"
 #include "RenderObjectComponent.h"
+#include "RigidBodyComponent.h"
 #include "SoundBankComponent.h"
 #include "SoundEffectComponent.h"
 #include "TransformComponent.h"
