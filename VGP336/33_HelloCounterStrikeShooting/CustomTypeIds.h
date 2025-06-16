@@ -4,8 +4,9 @@
 
 enum class CustomComponentId
 {
-	CS_CharacterMovement = static_cast<uint32_t>(SumEngine::ComponentId::Count),
-	CS_FPSCamera,
+	CS_FPSCamera = static_cast<uint32_t>(SumEngine::ComponentId::Count),
+	BaseGun,
+	Pistol
 };
 
 enum class CustomServiceId
