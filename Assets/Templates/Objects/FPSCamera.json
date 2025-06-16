@@ -1,7 +1,7 @@
 {
     "Components": {
         "TransformComponent": {
-            "Position": [ 0.0, 10.0, 0.0 ],
+            "Position": [ 0.0, 0.0, 0.0 ],
             "Rotation": [ 0.0, 0.0, 0.0, 1.0 ],
             "Scale": [ 1.0, 1.0, 1.0 ]
         },
@@ -10,35 +10,38 @@
             "ColliderData": {
                 "Shape": "Hull",
                 "HalfExtents": [ 0.5, 1.0, 0.5 ],
-                "Origin": [ 0.0, 1.0, 0.0 ]
+                "Origin": [ 0.0, 0.0, 0.0 ]
+            }
+        },
+        "SoundBankComponent": {
+            "SoundEffects": {
+                "Reloading": {
+                    "FileName": "reloading.wav",
+                    "Looping": false
+                },
+                "Pistol": {
+                    "FileName": "shoot.wav",
+                    "Looping": false
+                },
+                "Rifle": {
+                    "FileName": "shootAuto.wav",
+                    "Looping": false
+                }
             }
         },
         "CameraComponent": {
 
         },
+        "RifleComponent": {
+            "Ammo": 30,
+            "FireRate": 0.2,
+            "Force": 50.0,
+            "ReloadSpeed": 3.0
+        },
         "CS_FPSControllerComponent": {
-            "MoveSpeed": 2.0,
-            "TurnSpeed": 0.05
-        }
-    },
-    "SoundBankComponent": {
-        "SoundEffects": {
-            "Blast": {
-                "FileName": "../../Assets/Sounds/megamanx_blast.wav",
-                "Looping": false
-            },
-            "Title": {
-                "FileName": "megamanx_title.wav",
-                "Looping": true
-            },
-            "Eagle": {
-                "FileName": "megamanx_storm_eagle.wav",
-                "Looping": false
-            },
-            "Mandrill": {
-                "FileName": "megamanx_spark_mandrill.wav",
-                "Looping": false
-            }
+            "MoveSpeed": 3,
+            "TurnSpeed": 0.005,
+            "WalkSpeed": 1.5
         }
     }
 }
