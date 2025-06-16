@@ -1,6 +1,8 @@
 #include "CS_FPSControllerComponent.h"
-#include "../../Engine/SumEngine/Inc/RigidBodyComponent.h"
+#include "BaseGunComponent.h"
+
 #include "../../Engine/SumEngine/Inc/SaveUtil.h"
+#include "../../Framework/Physics/Inc/Raycast.h"
 
 using namespace SumEngine;
 using namespace SumEngine::Input;
@@ -37,6 +39,8 @@ void CS_FPSControllerComponent::Initialize()
     mTransformComponent = GetOwner().GetComponent<TransformComponent>();
     mRigidBodyComponent = GetOwner().GetComponent<RigidBodyComponent>();
     mCameraComponent = GetOwner().GetComponent<CameraComponent>();
+    mGunComponent = GetOwner().GetComponent<BaseGunComponent>();
+    mGunComponent->Pickup(this);
 
     ASSERT(mTransformComponent != nullptr || mRigidBodyComponent != nullptr, "CS_FPSControllerComponent: neither camera nor rigidbody was found");
 }
@@ -68,7 +72,7 @@ void CS_FPSControllerComponent::Update(float deltaTime)
     // Use YAW to rotate the model as well
     mCameraComponent->GetCamera().Yaw(yaw);
     mCameraComponent->GetCamera().Pitch(pitch);
-    
+
 
     // This is only Up and down. Character rotation will not be affected by this
     //camera.Pitch(input->GetMouseMoveY() * turnSpeed);
@@ -83,41 +87,61 @@ void CS_FPSControllerComponent::Update(float deltaTime)
     Vector3 walk = { mForward.x, 0, mForward.z };
     Vector3 strafe = { mRight.x, 0, mRight.z };
 
+    Vector3 moveDirection = Vector3::Zero;
+
     if (input->IsKeyDown(KeyCode::W))
     {
-        mRigidBodyComponent->SetVelocity(walk * mMoveSpeed);
+        moveDirection += walk;
     }
     else if (input->IsKeyDown(KeyCode::S))
     {
-        mRigidBodyComponent->SetVelocity(walk * -mMoveSpeed);
+        moveDirection += -walk;
     }
 
     if (input->IsKeyDown(KeyCode::A))
     {
-        mRigidBodyComponent->SetVelocity(strafe * -mMoveSpeed);
+        moveDirection += -strafe;
     }
     else if (input->IsKeyDown(KeyCode::D))
     {
-        mRigidBodyComponent->SetVelocity(strafe * mMoveSpeed);
+        moveDirection += strafe;
     }
 
+    // If there is a move direction
+    if (moveDirection.x != 0 ||
+        moveDirection.y != 0 ||
+        moveDirection.z != 0)
+    {
+        moveDirection = Math::Normalize(moveDirection);
+        moveDirection *= input->IsKeyDown(KeyCode::LSHIFT) ? mWalkSpeed : mMoveSpeed;
+        mRigidBodyComponent->SetVelocity(moveDirection);
+    }
     mCameraComponent->GetCamera().SetPosition(mTransformComponent->position);
 }
 
 void CS_FPSControllerComponent::DebugUI()
 {
-    SimpleDraw::AddLine(Vector3::Zero, mForward, Colors::Red);
-    SimpleDraw::AddLine(Vector3::Zero, mRight, Colors::Green);
-    SimpleDraw::AddLine(Vector3::Zero, mUp, Colors::Blue);
+    if (ImGui::CollapsingHeader("CharacterController"))
+    {
+        ImGui::DragFloat("TurnSpeed", &mTurnSpeed, 0.01);
+        ImGui::DragFloat("WalkSpeed", &mWalkSpeed, 0.01);
+        ImGui::DragFloat("MoveSpeed", &mMoveSpeed, 0.01);
+    }
+}
+
+const Vector3 CS_FPSControllerComponent::GetForwardVector() const
+{
+    return mForward;
+}
+
+const Vector3 CS_FPSControllerComponent::GetPosition() const
+{
+    return mTransformComponent->position;
 }
 
 void CS_FPSControllerComponent::Deserialize(const rapidjson::Value& value)
 {
     SaveUtil::ReadFloat("MoveSpeed", mMoveSpeed, value);
     SaveUtil::ReadFloat("TurnSpeed", mTurnSpeed, value);
-}
-
-void CS_FPSControllerComponent::Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& original)
-{
-
+    SaveUtil::ReadFloat("WalkSpeed", mWalkSpeed, value);
 }

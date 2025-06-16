@@ -2,6 +2,8 @@
 
 #include "CustomTypeIds.h"
 
+class BaseGunComponent;
+
 class CS_FPSControllerComponent : public SumEngine::Component	// Copying camera component
 {
 public:
@@ -12,13 +14,16 @@ public:
 	void Update(float deltaTime) override;
 	void DebugUI() override;
 
+	const SumEngine::Math::Vector3 GetForwardVector() const;
+	const SumEngine::Math::Vector3 GetPosition() const;
+
 	void Deserialize(const rapidjson::Value& value) override;
-	void Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& original) override;
 
 private:
 	SumEngine::TransformComponent* mTransformComponent = nullptr;		// To rotate model
 	SumEngine::RigidBodyComponent* mRigidBodyComponent = nullptr;
 	SumEngine::CameraComponent* mCameraComponent = nullptr;				// To rotate camera
+	BaseGunComponent* mGunComponent = nullptr;
 
 	float mMoveSpeed = 2.0f;
 	float mWalkSpeed = 1.0f;

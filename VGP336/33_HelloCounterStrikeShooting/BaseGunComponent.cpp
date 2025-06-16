@@ -35,6 +35,16 @@ void BaseGunComponent::Update(float deltaTime)
     }
 }
 
+void BaseGunComponent::DebugUI()
+{
+    if (ImGui::CollapsingHeader("Gun"))
+    {
+        ImGui::DragInt("Ammo", &mAmmo);
+        ImGui::DragFloat("FireRate", &mFireRate, 0.01f);
+        ImGui::DragFloat("ReloadSpeed", &mReloadSpeed, 0.01f);
+    }
+}
+
 void BaseGunComponent::Shoot()
 {
     if (mCurrentFireBuffer > 0.0f || mIsReloading || !mIsEquipped)
@@ -45,7 +55,7 @@ void BaseGunComponent::Shoot()
     Vector3 aim = mAgent->GetForwardVector();
     Raycast raycast;
     bool hit = raycast.Cast(mAgent->GetPosition(), mAgent->GetForwardVector(), 100.0f);
-    
+
     if (hit)
     {
         RaycastHit* raycastHit = raycast.GetRaycastResult();
