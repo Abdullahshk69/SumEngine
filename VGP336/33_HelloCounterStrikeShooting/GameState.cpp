@@ -1,5 +1,7 @@
 #include "GameState.h"
 #include "CS_FPSControllerComponent.h"
+#include "PistolComponent.h"
+#include "RifleComponent.h"
 
 using namespace SumEngine;
 using namespace SumEngine::Math;
@@ -19,50 +21,65 @@ using namespace SumEngine::Audio;
 
 Component* CustomComponentMake(const std::string& componentName, GameObject& gameObject)
 {
-	if (componentName == "CS_FPSControllerComponent")
-	{
-		return gameObject.AddComponent<CS_FPSControllerComponent>();
-	}
-	return nullptr;
+    if (componentName == "CS_FPSControllerComponent")
+    {
+        return gameObject.AddComponent<CS_FPSControllerComponent>();
+    }
+    if (componentName == "PistolComponent")
+    {
+        return gameObject.AddComponent<PistolComponent>();
+    }
+    if (componentName == "RifleComponent")
+    {
+        return gameObject.AddComponent<RifleComponent>();
+    }
+    return nullptr;
 }
 
 Component* CustomComponentGet(const std::string& componentName, GameObject& gameObject)
 {
-	if (componentName == "CS_FPSControllerComponent")
-	{
-		return gameObject.GetComponent<CS_FPSControllerComponent>();
-	}
-	return nullptr;
+    if (componentName == "CS_FPSControllerComponent")
+    {
+        return gameObject.GetComponent<CS_FPSControllerComponent>();
+    }
+    if (componentName == "PistolComponent")
+    {
+        return gameObject.GetComponent<PistolComponent>();
+    }
+    if (componentName == "RifleComponent")
+    {
+        return gameObject.GetComponent<RifleComponent>();
+    }
+    return nullptr;
 }
-
 
 void GameState::Initialize()
 {
-	//GameWorld::SetCustomService(CustomServiceMake);
-	GameObjectFactory::SetCustomMake(CustomComponentMake);
-	GameObjectFactory::SetCustomGet(CustomComponentGet);
+    //GameWorld::SetCustomService(CustomServiceMake);
+    GameObjectFactory::SetCustomMake(CustomComponentMake);
+    GameObjectFactory::SetCustomGet(CustomComponentGet);
 
-	mGameWorld.LoadLevel(L"../../Assets/Templates/Levels/final_level.json");
+    mGameWorld.LoadLevel(L"../../Assets/Templates/Levels/final_level.json");
 }
 
 void GameState::Terminate()
 {
-	mGameWorld.Terminate();
+    mGameWorld.Terminate();
 }
 
 void GameState::Update(float deltaTime)
 {
-	mGameWorld.Update(deltaTime);
+    mGameWorld.Update(deltaTime);
 }
 
 void GameState::Render()
 {
-	mGameWorld.Render();
+    mGameWorld.Render();
 }
 
 void GameState::DebugUI()
 {
-	ImGui::Begin("Debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-	mGameWorld.DebugUI();
-	ImGui::End();
+    ImGui::Begin("Debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    mGameWorld.DebugUI();
+    ImGui::End();
 }
