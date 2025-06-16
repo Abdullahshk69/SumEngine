@@ -8,5 +8,6 @@
 #include "PhysicsDebugDraw.h"
 #include "PhysicsObject.h"
 #include "PhysicsWorld.h"
+#include "Raycast.h"
 #include "RigidBody.h"
 #include "SoftBody.h"
