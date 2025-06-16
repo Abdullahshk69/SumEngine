@@ -17,4 +17,5 @@ protected:
 	SumEngine::Graphics::Camera mCamera;
 	SumEngine::Graphics::ParticleSystemEffect mParticleSystemEffect;
 	SumEngine::Physics::ParticleSystem mParticleSystem;
+	SumEngine::GameWorld mGameWorld;
 };
