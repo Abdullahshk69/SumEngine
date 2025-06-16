@@ -36,6 +36,8 @@ namespace SumEngine::Physics
 		void UpdateSettings(const Settings& settings);
 		void SetGravity(const SumEngine::Math::Vector3& gravity);
 
+		btDynamicsWorld* GetDynamicsWorld();
+
 	private:
 		Settings mSettings;
 
@@ -50,6 +52,8 @@ namespace SumEngine::Physics
 
 		PhysicsDebugDraw mPhysicsDebugDraw;
 		bool mDebugDraw = false;
+
+		//std::set<std::pair<const btCollisionObject*, const btCollisionObject*>> mPrevCollisions;
 
 		friend class SoftBody;
 #ifdef USE_SOFT_BODY
