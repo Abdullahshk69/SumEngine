@@ -16,9 +16,10 @@ void RigidBody::Initialize(SumEngine::Graphics::Transform& graphicsTransform, co
 {
 	mGraphicsTransform = &graphicsTransform;
 	mMass = mass;
-
+	
 	mMotionState = new btDefaultMotionState(ConvertTobtTransform(graphicsTransform));
 	mRigidBody = new btRigidBody(mMass, mMotionState, shape.mCollisionShape);
+	
 	// mRigidBody->setRestitution(1.0f); // If you want to add bounciness
 
 	if (addToWorld)
@@ -45,6 +46,17 @@ void RigidBody::SetVelocity(const SumEngine::Math::Vector3& velocity)
 {
 	mRigidBody->activate();
 	mRigidBody->setLinearVelocity(TobtVector3(velocity));
+}
+
+void RigidBody::AddForce(const SumEngine::Math::Vector3& force)
+{
+	mRigidBody->activate();
+	mRigidBody->applyCentralForce(TobtVector3(force));
+}
+
+void SumEngine::Physics::RigidBody::SetGameObject(GameObject& gameObject)
+{
+	mRigidBody->setUserPointer(&gameObject);
 }
 
 const Math::Vector3 SumEngine::Physics::RigidBody::GetVelocity() const

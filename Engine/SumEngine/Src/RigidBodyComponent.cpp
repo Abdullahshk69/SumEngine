@@ -14,6 +14,7 @@ void RigidBodyComponent::Initialize()
 	{
 		TransformComponent* transformComponent = GetOwner().GetComponent<TransformComponent>();
 		mRigidBody.Initialize(*transformComponent, mCollisionShape, mMass, false);
+		mRigidBody.SetGameObject(GetOwner());
 		ps->Register(this);
 	}
 }
@@ -97,4 +98,9 @@ void RigidBodyComponent::SetPosition(const Math::Vector3& position)
 void RigidBodyComponent::SetVelocity(const Math::Vector3& velocity)
 {
 	mRigidBody.SetVelocity(velocity);
+}
+
+void RigidBodyComponent::AddForce(const Math::Vector3& force)
+{
+	mRigidBody.AddForce(force);
 }

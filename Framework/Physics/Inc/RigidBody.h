@@ -2,6 +2,11 @@
 
 #include "PhysicsObject.h"
 
+namespace SumEngine
+{
+	class GameObject;
+}
+
 namespace SumEngine::Physics
 {
 	class CollisionShape;
@@ -17,6 +22,8 @@ namespace SumEngine::Physics
 
 		void SetPosition(const SumEngine::Math::Vector3& position);
 		void SetVelocity(const SumEngine::Math::Vector3& velocity);
+		void AddForce(const SumEngine::Math::Vector3& force);
+		void SetGameObject(GameObject& gameObject);
 		const Math::Vector3 GetVelocity() const;
 
 		void Activate();
