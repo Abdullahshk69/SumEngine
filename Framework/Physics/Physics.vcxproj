@@ -143,6 +143,7 @@
     <ClInclude Include="Inc\PhysicsDebugDraw.h" />
     <ClInclude Include="Inc\PhysicsObject.h" />
     <ClInclude Include="Inc\PhysicsWorld.h" />
+    <ClInclude Include="Inc\Raycast.h" />
     <ClInclude Include="Inc\RigidBody.h" />
     <ClInclude Include="Inc\SoftBody.h" />
     <ClInclude Include="Src\Precompiled.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Src\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Src\Raycast.cpp" />
     <ClCompile Include="Src\RigidBody.cpp" />
     <ClCompile Include="Src\SoftBody.cpp" />
   </ItemGroup>

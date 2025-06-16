@@ -128,16 +128,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseGunComponent.h" />
-    <ClInclude Include="CS_CharacterMovementComponent.h" />
+    <ClInclude Include="Crosshair.h" />
     <ClInclude Include="CS_FPSControllerComponent.h" />
     <ClInclude Include="CustomTypeIds.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="PistolComponent.h" />
+    <ClInclude Include="RifleComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseGunComponent.cpp" />
-    <ClCompile Include="CS_CharacterMovementComponent.cpp" />
+    <ClCompile Include="Crosshair.cpp" />
     <ClCompile Include="CS_FPSControllerComponent.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="PistolComponent.cpp" />
+    <ClCompile Include="RifleComponent.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>

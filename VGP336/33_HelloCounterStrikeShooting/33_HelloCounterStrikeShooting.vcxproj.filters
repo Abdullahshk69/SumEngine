@@ -21,13 +21,19 @@
     <ClInclude Include="BaseGunComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CS_CharacterMovementComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CustomTypeIds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CS_FPSControllerComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Crosshair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PistolComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RifleComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,10 +47,16 @@
     <ClCompile Include="BaseGunComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CS_CharacterMovementComponent.cpp">
+    <ClCompile Include="CS_FPSControllerComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CS_FPSControllerComponent.cpp">
+    <ClCompile Include="Crosshair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PistolComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RifleComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
