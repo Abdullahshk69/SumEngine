@@ -23,6 +23,15 @@
         },
         "Ground": {
             "Template": "../../Assets/Templates/ground_obj.json"
+        },
+        "Mesh": {
+            "Template": "../../Assets/Templates/mesh_obj.json",
+            "Components": {
+                "TransformComponent": {
+                    "Position": [ -2.0, 0.0, 0.0 ]
+                }
+
+            }
         }
     }
 }
