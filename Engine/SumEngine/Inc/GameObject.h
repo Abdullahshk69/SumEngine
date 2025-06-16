@@ -33,6 +33,9 @@ namespace SumEngine
 		GameObject* GetParent();
 		const GameObject* GetParent() const;
 
+		void OnCollisionEnter(GameObject* gameObject);
+		bool HasAlreadyEntered(GameObject* gameObject);
+
 		template<class ComponentType>
 		ComponentType* AddComponent()
 		{
@@ -106,5 +109,6 @@ namespace SumEngine
 		using Children = std::vector<GameObject*>;
 		Children mChildren;
 		GameObject* mParent = nullptr;
+		std::unordered_map<GameObject*, bool> mHasEntered;
 	};
 }

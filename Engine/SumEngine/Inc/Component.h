@@ -3,7 +3,6 @@
 
 namespace SumEngine
 {
-
 	class GameObject;
 	class Component
 	{
@@ -23,6 +22,8 @@ namespace SumEngine
 
 		virtual void Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& original) {}
 		virtual void Deserialize(const rapidjson::Value& value) {}
+
+		virtual void OnCollisionEnter(GameObject* other) {}
 
 		virtual uint32_t GetTypeId() const = 0;
 
