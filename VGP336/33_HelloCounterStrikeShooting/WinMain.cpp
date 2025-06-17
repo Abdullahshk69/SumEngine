@@ -7,7 +7,7 @@ using namespace SumEngine;
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	AppConfig config;
-	config.appname = L"Hello Game Game World";
+	config.appname = L"Hello CSGO movement and shooting mechanic";
 
 	App& myApp = MainApp();
 	myApp.AddState<GameState>("GameState");
