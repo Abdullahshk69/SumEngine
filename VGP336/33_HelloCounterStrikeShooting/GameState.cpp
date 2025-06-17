@@ -10,15 +10,6 @@ using namespace SumEngine::Core;
 using namespace SumEngine::Input;
 using namespace SumEngine::Audio;
 
-//Service* CustomServiceMake(const std::string& serviceName, GameWorld& gameWorld)
-//{
-//	if (serviceName == "CS_CharacterMovementComponent")
-//	{
-//		return gameWorld.AddService<CS_CharacterMovementComponent>();
-//	}
-//	return nullptr;
-//}
-
 Component* CustomComponentMake(const std::string& componentName, GameObject& gameObject)
 {
     if (componentName == "CS_FPSControllerComponent")
