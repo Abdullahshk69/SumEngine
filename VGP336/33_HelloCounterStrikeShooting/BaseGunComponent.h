@@ -15,8 +15,7 @@ public:
     void DebugUI() override;
 
     virtual void Shoot();
-    virtual void ReloadStart();
-    virtual void ReloadFinish();
+    virtual void Reload();
     virtual void Pickup(CS_FPSControllerComponent* agent);
     virtual void Drop();
     virtual void Switch();
@@ -24,6 +23,8 @@ public:
     virtual void PlayReloadingSoundEffect() { mSoundBankComponent->Play("Reloading"); }
 
 protected:
+    virtual void ReloadStart();
+    virtual void ReloadFinish();
     int mAmmo = 5;
     int mCurrentAmmo = 5;
     float mFireRate = 1.0f;

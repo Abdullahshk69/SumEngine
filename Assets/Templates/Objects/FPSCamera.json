@@ -43,5 +43,17 @@
             "TurnSpeed": 0.005,
             "WalkSpeed": 1.5
         }
+    },
+    "PistolComponent": {
+        "Ammo": 7,
+        "FireRate": 0.7,
+        "Force": 300.0,
+        "ReloadSpeed": 3.0
+    },
+    "RifleComponent": {
+        "Ammo": 30,
+        "FireRate": 0.2,
+        "Force": 50.0,
+        "ReloadSpeed": 3.0
     }
 }

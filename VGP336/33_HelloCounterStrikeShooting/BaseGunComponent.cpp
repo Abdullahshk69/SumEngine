@@ -22,6 +22,11 @@ void BaseGunComponent::Update(float deltaTime)
     if (mCurrentFireBuffer > 0.0f)
     {
         mCurrentFireBuffer -= deltaTime;
+
+        if (mCurrentFireBuffer <= 0.0f && mCurrentAmmo == 0)
+        {
+            Reload();
+        }
     }
 
     if (mReloadTimerBuffer > 0.0f)
@@ -69,7 +74,12 @@ void BaseGunComponent::Shoot()
     }
     PlayShootingSoundEffect();
     mCurrentFireBuffer = mFireRate;
-    if (--mCurrentAmmo == 0)
+    mCurrentAmmo--;
+}
+
+void BaseGunComponent::Reload()
+{
+    if (!mIsReloading && mCurrentAmmo < mAmmo)
     {
         ReloadStart();
     }

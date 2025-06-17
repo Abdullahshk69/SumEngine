@@ -117,6 +117,11 @@ void CS_FPSControllerComponent::Update(float deltaTime)
         mRigidBodyComponent->SetVelocity(moveDirection);
     }
     mCameraComponent->GetCamera().SetPosition(mTransformComponent->position);
+
+    if (input->IsKeyPressed(KeyCode::R))
+    {
+        mGunComponent->Reload();
+    }
 }
 
 void CS_FPSControllerComponent::DebugUI()
